@@ -24,14 +24,6 @@ private slots:
 
     void on_z3img_valueChanged(double arg1);
 
-    void on_radioButton_clicked();
-
-    void on_radioButton_released();
-
-    void on_radioButton_pressed();
-
-    void on_radioButton_clicked(bool checked);
-
 private:
     Ui::dialogmat *ui;
 };
