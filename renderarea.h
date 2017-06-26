@@ -9,11 +9,17 @@ class RenderArea : public QWidget
     Q_OBJECT
 public:
     RenderArea( QWidget *parent = nullptr);
-    bool flag[4] = {false};
+    bool flag[16] = {false};
     double f, Rs, Rp;
     double X1L,X2L,Zin,L_l,C_l;
-    bool iFlag = false;
-    bool tFlag = false;
+    double Zn = 50;
+    double w;
+    QPointF Zin2, Yin, Ztemp, Ytemp;
+    double Cin, Lin,L, C;
+
+
+
+
     QSize minimumSizeHint() const Q_DECL_OVERRIDE;
     QSize sizeHint() const Q_DECL_OVERRIDE;
 
