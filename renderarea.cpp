@@ -3,11 +3,12 @@
 #include <QPaintEvent>
 #include <QPainter>
 #include "global.h"
+#include <QMessageBox>
 
 RenderArea::RenderArea( QWidget *parent) :
     QWidget(parent),
-    mBackGroundColor (0, 0, 0),
-    mShapeColor (255, 255, 255),
+    mBackGroundColor (255, 255, 255),
+    mShapeColor (0, 0, 0),
     mMode(Impedence)
 {
 
@@ -61,7 +62,7 @@ QPointF RenderArea::compute_imaginary(float t)
      painter.drawRect(this->rect());
      painter.drawLine(QPointF (center.x(), -1000+center.y()), QPointF(center.x(), 1000+center.y()) );
      painter.drawLine(QPointF (-1000+center.x(), center.y()), QPointF(1000+center.x(), center.y()) );
-     painter.setPen(Qt::white);
+     painter.setPen(Qt::blue);
 
 
      float intervalLength = 2*M_PI;
@@ -89,7 +90,7 @@ QPointF RenderArea::compute_imaginary(float t)
                     pixel.setX(-point.x() * scale + center.x());
                     pixel.setY(point.y() * scale + center.y());
 
-                     painter.setPen(Qt::white);
+                     painter.setPen(Qt::blue);
                      if(pow(point.x(),2)+pow(point.y(),2)<1)      //Restricting the domain of Smith Chart
                      {
                      painter.drawLine(iPixel, pixel);
@@ -98,6 +99,7 @@ QPointF RenderArea::compute_imaginary(float t)
                     //painter.drawPoint(pixel);
                 }
          }
+         painter.setPen(Qt::black);
          for (RenderArea::r = 0; RenderArea::r < 10 ; RenderArea::r+=0.2) {
 
              iPoint = compute_real(0);
@@ -133,7 +135,7 @@ QPointF RenderArea::compute_imaginary(float t)
                     pixel.setX(point.x() * scale + center.x());
                     pixel.setY(-point.y() * scale + center.y());
 
-                     painter.setPen(Qt::white);
+                     painter.setPen(Qt::blue);
                      if(pow(point.x(),2)+pow(point.y(),2)<1)      //Restricting the domain of Smith Chart
                      {
                      painter.drawLine(iPixel, pixel);
@@ -165,7 +167,7 @@ QPointF RenderArea::compute_imaginary(float t)
          break;
 
      case Admittance:
-         for (RenderArea::r = -2; RenderArea::r <=2 ; RenderArea::r+=0.25) {
+         for (RenderArea::r = -2; RenderArea::r <=2 ; RenderArea::r+=0.3) {
 
              iPoint = compute_imaginary(0);
              iPixel.setX// mBackGroundColor = Qt::green;
@@ -180,7 +182,7 @@ QPointF RenderArea::compute_imaginary(float t)
                     pixel.setX(-point.x() * scale + center.x());
                     pixel.setY(point.y() * scale + center.y());
 
-                     painter.setPen(Qt::white);
+                     painter.setPen(Qt::blue);
                      if(pow(point.x(),2)+pow(point.y(),2)<1)      //Restricting the domain of Smith Chart
                      {
                      painter.drawLine(iPixel, pixel);
@@ -212,7 +214,7 @@ QPointF RenderArea::compute_imaginary(float t)
          break;
 
      case Impedence:
-         for (RenderArea::r = -2; RenderArea::r <=2 ; RenderArea::r+=0.25) {
+         for (RenderArea::r = -2; RenderArea::r <=2 ; RenderArea::r+=0.3) {
 
              iPoint = compute_imaginary(0);
              iPixel.setX// mBackGroundColor = Qt::green;
@@ -227,7 +229,7 @@ QPointF RenderArea::compute_imaginary(float t)
                     pixel.setX(point.x() * scale + center.x());
                     pixel.setY(-point.y() * scale + center.y());
 
-                     painter.setPen(Qt::white);
+                     painter.setPen(Qt::blue);
                      if(pow(point.x(),2)+pow(point.y(),2)<1)      //Restricting the domain of Smith Chart
                      {
                      painter.drawLine(iPixel, pixel);
@@ -274,7 +276,7 @@ QPointF RenderArea::compute_imaginary(float t)
                     float x = points[i].x();
                     float y = points[i].y();
                     if (x == -1 && y == 0) continue;
-                    pixel_array[i].setX(((x-1)*(x+1) + pow(y,2))/((pow(x+1,2)+pow(y,2))) * scale + center.x());
+                    pixel_array[i].setX((((x-1)*(x+1) + pow(y,2))/((pow(x+1,2)+pow(y,2)))) * scale + center.x());
                     pixel_array[i].setY(-((2*y)/((pow(x+1,2)+pow(y,2))))* scale + center.y());
                     painter.drawPoint(pixel_array[i]);
 
@@ -282,9 +284,9 @@ QPointF RenderArea::compute_imaginary(float t)
             }
         }
 
-     if(iFlag) {
+     if(flag[4]) {
           painter.setPen(QPen(Qt::green, 5));
-          if(!tFlag) {
+          if(!flag[5]) {
           X1L= pow((Rs*Rp-Rp*Rp),2);      //tuning
           X2L= Rs*Rp/X1L;
           }//tuning
@@ -297,6 +299,55 @@ QPointF RenderArea::compute_imaginary(float t)
           }
 
      }
+
+    if(flag[6] && flag[7]) {
+
+        painter.setPen(QPen(Qt::red, 5));
+        double x = Zin2.x()/((Zin2.x()*Zin2.x()) + (Zin2.y()*Zin2.y()));
+        double y = -Zin2.y()/((Zin2.x()*Zin2.x()) + (Zin2.y()*Zin2.y()));
+        Yin.setX(x);
+        Yin.setY(y);
+        painter.drawPoint(QPointF(-(((x-1)*(x+1) + pow(y,2))/((pow(x+1,2)+pow(y,2)))) * scale + center.x(),((2*y)/((pow(x+1,2)+pow(y,2))))* scale + center.y()));
+        //painter.drawPoint(QPointF(Zin2.x()*scale + center.x(), Zin2.y()*scale + center.y()));
+        double a = Yin.x()/50;
+        double b = Yin.y()/50;
+        L = pow(((50-(2500*a))/(a*w*w)), 0.5);
+        C = (1/w)*(((w*L)/(2500+w*w*L*L))+b);
+
+    }
+
+    if(flag[8] && ( flag [7] && flag[6])) {
+
+        painter.setPen(QPen(Qt::green,5));
+        double x = Ztemp.x()/((Ztemp.x()*Ztemp.x()) + (Ztemp.y()*Ztemp.y()));
+        double y;
+        if(flag[10]) y = Ytemp.y();
+        else y = -Ztemp.y()/((Ztemp.x()*Ztemp.x()) + (Ztemp.y()*Ztemp.y()));
+        Ytemp.setX(x);
+
+        painter.drawPoint(QPointF((((1-x)*(x+1) - pow(y,2))/((pow(x+1,2)+pow(y,2)))) * scale + center.x(),((2*y)/((pow(x+1,2)+pow(y,2))))* scale + center.y()));
+
+    }
+    if (flag[12]) {
+
+        if(!flag[11]) Lin = 0;
+    for(; Lin <= L; Lin+=(L/100) ) {
+
+        double x = 1;
+        double y = (w*Lin)/50;
+        painter.setPen(QPen(Qt::black, 2));
+        painter.drawPoint(QPointF((((x-1)*(x+1) + pow(y,2))/((pow(x+1,2)+pow(y,2)))) * scale + center.x(),-((2*y)/((pow(x+1,2)+pow(y,2))))* scale + center.y()));
+
+    }
+    if (!flag[10]) Cin = 0;
+    for(; Cin <= C; Cin+=(C/100)) {
+
+         painter.setPen(QPen(Qt::black, 2));
+       double  x = 2500/(2500 + w*w*L*L);
+        double y = 50*(((-w*L)/(2500 + w*w*L*L)) + w*Cin);
+        painter.drawPoint(QPointF((((1-x)*(x+1) - pow(y,2))/((pow(x+1,2)+pow(y,2)))) * scale + center.x(),((2*y)/((pow(x+1,2)+pow(y,2))))* scale + center.y()));
+    }
+}
 
  }
 
