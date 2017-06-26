@@ -60,6 +60,20 @@ private slots:
 
     void on_X2L_valueChanged(double arg1);
 
+    void on_Zinput_valueChanged(double arg1);
+
+    void on_ZinputY_valueChanged(double arg1);
+
+    void on_frequency2_valueChanged(double arg1);
+
+    void on_Inductance_valueChanged(double arg1);
+
+    void on_doubleSpinBox_9_valueChanged(double arg1);
+
+    void on_Capacitance_valueChanged(double arg1);
+
+    void on_btn_path_clicked();
+
 private:
     Ui::MainWindow *ui;
 
