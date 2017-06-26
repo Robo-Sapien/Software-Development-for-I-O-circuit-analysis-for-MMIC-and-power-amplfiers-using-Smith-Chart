@@ -66,24 +66,6 @@ public:
     else
         return false;
   }
-  bool operator !=(complex a){
-    if(a.real!=real || a.imag!=imag)
-        return true;
-    else
-        return false;
-  }
-  bool operator !=(int a){
-    if(real!=a || imag!=0)
-        return true;
-    else
-        return false;
-  }
-  bool operator !=(float a){
-    if(real!=a || imag!=0)
-        return true;
-    else
-        return false;
-  }
 
 
     void setValue(float a,float b){
@@ -181,11 +163,6 @@ complex one(1,0),zero(0,0);
 matrix error_mat;
 void dialogmat::on_pushButton_clicked()
 {
-    this->ui->A->setText(" ");
-    this->ui->B->setText(" ");
-    this->ui->C->setText(" ");
-    this->ui->D->setText(" ");
-
     complex z1,z2,z3;
     matrix m1,m2,m3,ans;
 
@@ -198,53 +175,11 @@ void dialogmat::on_pushButton_clicked()
         m1=setSeries(z1);
         m2=setShunt(z3);
         m3=setSeries(z2);
-        ans=m1*m2*m3;
-        if(z3!=0){
-            this->ui->A->setText(ans.val[0][0].display());
-            this->ui->B->setText(ans.val[0][1].display());
-            this->ui->C->setText(ans.val[1][0].display());
-            this->ui->D->setText(ans.val[1][1].display());
-        }
     }
     else if (this->ui->PiButton->isChecked()){
         m1=setShunt(z1);
         m2=setSeries(z2);
         m3=setShunt(z3);
-        ans=m1*m2*m3;
-        if(z1!=0 && z3!=0){
-            this->ui->A->setText(ans.val[0][0].display());
-            this->ui->B->setText(ans.val[0][1].display());
-            this->ui->C->setText(ans.val[1][0].display());
-            this->ui->D->setText(ans.val[1][1].display());
-        }
-    }
-    else if (this->ui->radioButton->isChecked()){
-        if(this->ui->radioButton_2->isChecked()){
-            m1=setSeries(z1);
-            m2=setShunt(z2);
-            ans=m1*m2;
-            if(z2!=0){
-                this->ui->A->setText(ans.val[0][0].display());
-                this->ui->B->setText(ans.val[0][1].display());
-                this->ui->C->setText(ans.val[1][0].display());
-                this->ui->D->setText(ans.val[1][1].display());
-            }
-        }
-        else if(this->ui->radioButton_3->isChecked()){
-            m1=setShunt(z1);
-            m2=setSeries(z2);
-            ans=m1*m2;
-            if(z1!=0)
-            {
-                this->ui->A->setText(ans.val[0][0].display());
-                this->ui->B->setText(ans.val[0][1].display());
-                this->ui->C->setText(ans.val[1][0].display());
-                this->ui->D->setText(ans.val[1][1].display());
-            }
-        }
-
-        else
-        QMessageBox::information(0,"Error!","Select 1st Element");
     }
     else if(this->ui->CustomButton->isChecked()){
         QMessageBox::information(0,"Error!","Under Development");
@@ -252,6 +187,11 @@ void dialogmat::on_pushButton_clicked()
     else{
         QMessageBox::information(0,"Error!","Select Topology");
     }
+    ans=m1*m2*m3;
+    this->ui->A->setText(ans.val[0][0].display());
+    this->ui->B->setText(ans.val[0][1].display());
+    this->ui->C->setText(ans.val[1][0].display());
+    this->ui->D->setText(ans.val[1][1].display());
 
     free(m1.val);free(m2.val);free(m3.val);free(ans.val);
 }
@@ -268,25 +208,4 @@ matrix setShunt(complex z){
     }
     m.val[0][0]=1;m.val[0][1]=0;m.val[1][0]=one/z;m.val[1][1]=1;
     return m;
-}
-
-void dialogmat::on_radioButton_clicked(bool checked)
-{
-    if(checked==true){
-      this->ui->groupBox->setEnabled(true);
-      this->ui->z3real->setEnabled(false);
-      this->ui->z3img->setEnabled(false);
-    }
-    else
-        this->ui->groupBox->setEnabled(false);
-}
-
-void dialogmat::on_CustomButton_clicked(bool checked)
-{
-    if(checked==true){
-        this->ui->groupBox_2->setEnabled(true);
-    }
-    else{
-        this->ui->groupBox_2->setEnabled(false);
-    }
 }
