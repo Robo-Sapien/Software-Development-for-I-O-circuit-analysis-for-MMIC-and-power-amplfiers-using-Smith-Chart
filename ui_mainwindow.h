@@ -20,6 +20,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -33,6 +34,11 @@ public:
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     RenderArea *renderArea;
+    QDoubleSpinBox *frequencyLC;
+    QPushButton *pathButton;
+    QPushButton *pathStopButton;
+    QLabel *label_8;
+    QRadioButton *cSeriesRadioButton;
     QVBoxLayout *verticalLayout_7;
     QVBoxLayout *verticalLayout_6;
     QVBoxLayout *verticalLayout;
@@ -73,13 +79,27 @@ public:
     QHBoxLayout *horizontalLayout_6;
     QLabel *label_6;
     QDoubleSpinBox *X1L;
+    QDoubleSpinBox *Zinput;
+    QDoubleSpinBox *ZinputY;
+    QLabel *Cvalue;
+    QLabel *Lvalue;
+    QDoubleSpinBox *frequency2;
+    QDoubleSpinBox *Inductance;
+    QPushButton *btn_path;
+    QDoubleSpinBox *Capacitance;
+    QLabel *label_10;
+    QDoubleSpinBox *LCvalue;
+    QRadioButton *lSeriesRadioButton;
+    QRadioButton *lShuntRadioButton;
+    QRadioButton *cShuntRadioButton;
+    QLabel *LClabel;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(738, 575);
+        MainWindow->resize(1094, 628);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout = new QGridLayout(centralWidget);
@@ -89,7 +109,32 @@ public:
         renderArea = new RenderArea(centralWidget);
         renderArea->setObjectName(QStringLiteral("renderArea"));
 
-        gridLayout->addWidget(renderArea, 0, 0, 1, 1);
+        gridLayout->addWidget(renderArea, 0, 0, 14, 1);
+
+        frequencyLC = new QDoubleSpinBox(centralWidget);
+        frequencyLC->setObjectName(QStringLiteral("frequencyLC"));
+
+        gridLayout->addWidget(frequencyLC, 7, 5, 1, 1);
+
+        pathButton = new QPushButton(centralWidget);
+        pathButton->setObjectName(QStringLiteral("pathButton"));
+
+        gridLayout->addWidget(pathButton, 8, 5, 1, 1);
+
+        pathStopButton = new QPushButton(centralWidget);
+        pathStopButton->setObjectName(QStringLiteral("pathStopButton"));
+
+        gridLayout->addWidget(pathStopButton, 9, 5, 1, 1);
+
+        label_8 = new QLabel(centralWidget);
+        label_8->setObjectName(QStringLiteral("label_8"));
+
+        gridLayout->addWidget(label_8, 6, 5, 1, 1);
+
+        cSeriesRadioButton = new QRadioButton(centralWidget);
+        cSeriesRadioButton->setObjectName(QStringLiteral("cSeriesRadioButton"));
+
+        gridLayout->addWidget(cSeriesRadioButton, 0, 5, 1, 1);
 
         verticalLayout_7 = new QVBoxLayout();
         verticalLayout_7->setSpacing(6);
@@ -313,10 +358,109 @@ public:
         verticalLayout_7->addLayout(horizontalLayout_7);
 
 
-        gridLayout->addLayout(verticalLayout_7, 0, 1, 1, 1);
+        gridLayout->addLayout(verticalLayout_7, 0, 1, 13, 1);
+
+        Zinput = new QDoubleSpinBox(centralWidget);
+        Zinput->setObjectName(QStringLiteral("Zinput"));
+        Zinput->setMinimum(-99);
+        Zinput->setMaximum(9999);
+
+        gridLayout->addWidget(Zinput, 0, 2, 1, 1);
+
+        ZinputY = new QDoubleSpinBox(centralWidget);
+        ZinputY->setObjectName(QStringLiteral("ZinputY"));
+        ZinputY->setMaximum(9999);
+
+        gridLayout->addWidget(ZinputY, 0, 4, 1, 1);
+
+        Cvalue = new QLabel(centralWidget);
+        Cvalue->setObjectName(QStringLiteral("Cvalue"));
+
+        gridLayout->addWidget(Cvalue, 12, 4, 1, 1);
+
+        Lvalue = new QLabel(centralWidget);
+        Lvalue->setObjectName(QStringLiteral("Lvalue"));
+
+        gridLayout->addWidget(Lvalue, 12, 3, 1, 1);
+
+        frequency2 = new QDoubleSpinBox(centralWidget);
+        frequency2->setObjectName(QStringLiteral("frequency2"));
+        frequency2->setMaximum(9999);
+
+        gridLayout->addWidget(frequency2, 13, 2, 1, 1);
+
+        Inductance = new QDoubleSpinBox(centralWidget);
+        Inductance->setObjectName(QStringLiteral("Inductance"));
+        Inductance->setDecimals(10);
+        Inductance->setMinimum(0);
+        Inductance->setMaximum(99.99);
+        Inductance->setSingleStep(0.1);
+
+        gridLayout->addWidget(Inductance, 13, 4, 1, 1);
+
+        btn_path = new QPushButton(centralWidget);
+        btn_path->setObjectName(QStringLiteral("btn_path"));
+
+        gridLayout->addWidget(btn_path, 13, 3, 1, 1);
+
+        Capacitance = new QDoubleSpinBox(centralWidget);
+        Capacitance->setObjectName(QStringLiteral("Capacitance"));
+        Capacitance->setDecimals(10);
+        Capacitance->setSingleStep(1e-5);
+
+        gridLayout->addWidget(Capacitance, 13, 5, 1, 1);
+
+        label_10 = new QLabel(centralWidget);
+        label_10->setObjectName(QStringLiteral("label_10"));
+
+        gridLayout->addWidget(label_10, 10, 5, 1, 1);
+
+        LCvalue = new QDoubleSpinBox(centralWidget);
+        LCvalue->setObjectName(QStringLiteral("LCvalue"));
+
+        gridLayout->addWidget(LCvalue, 5, 5, 1, 1);
+
+        lSeriesRadioButton = new QRadioButton(centralWidget);
+        lSeriesRadioButton->setObjectName(QStringLiteral("lSeriesRadioButton"));
+
+        gridLayout->addWidget(lSeriesRadioButton, 2, 5, 1, 1);
+
+        lShuntRadioButton = new QRadioButton(centralWidget);
+        lShuntRadioButton->setObjectName(QStringLiteral("lShuntRadioButton"));
+
+        gridLayout->addWidget(lShuntRadioButton, 3, 5, 1, 1);
+
+        cShuntRadioButton = new QRadioButton(centralWidget);
+        cShuntRadioButton->setObjectName(QStringLiteral("cShuntRadioButton"));
+
+        gridLayout->addWidget(cShuntRadioButton, 1, 5, 1, 1);
+
+        LClabel = new QLabel(centralWidget);
+        LClabel->setObjectName(QStringLiteral("LClabel"));
+
+        gridLayout->addWidget(LClabel, 4, 5, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
         renderArea->raise();
+        Zinput->raise();
+        ZinputY->raise();
+        frequency2->raise();
+        Inductance->raise();
+        Lvalue->raise();
+        Cvalue->raise();
+        Capacitance->raise();
+        btn_path->raise();
+        cSeriesRadioButton->raise();
+        lSeriesRadioButton->raise();
+        cShuntRadioButton->raise();
+        lShuntRadioButton->raise();
+        pathStopButton->raise();
+        pathButton->raise();
+        frequencyLC->raise();
+        LCvalue->raise();
+        label_8->raise();
+        LClabel->raise();
+        label_10->raise();
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
@@ -329,11 +473,15 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
+        pathButton->setText(QApplication::translate("MainWindow", "Get Path", Q_NULLPTR));
+        pathStopButton->setText(QApplication::translate("MainWindow", "Stop", Q_NULLPTR));
+        label_8->setText(QApplication::translate("MainWindow", "Frequency:", Q_NULLPTR));
+        cSeriesRadioButton->setText(QApplication::translate("MainWindow", "C series", Q_NULLPTR));
         btnImaginary->setText(QApplication::translate("MainWindow", "Admittance", Q_NULLPTR));
         btnReal->setText(QApplication::translate("MainWindow", "Impedence", Q_NULLPTR));
         pushButton_2->setText(QApplication::translate("MainWindow", "Hide", Q_NULLPTR));
         btnSuperimpose->setText(QApplication::translate("MainWindow", "Superimpose", Q_NULLPTR));
-        pushButton_3->setText(QApplication::translate("MainWindow", "ABCD Parameters Analyser", Q_NULLPTR));
+        pushButton_3->setText(QApplication::translate("MainWindow", "Matrix", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindow", "                                         Plot Points  &  Tuner", Q_NULLPTR));
         label_7->setText(QApplication::translate("MainWindow", "                                    Impedence Matching Tuner", Q_NULLPTR));
         label_2->setText(QApplication::translate("MainWindow", "Frequency", Q_NULLPTR));
@@ -342,6 +490,14 @@ public:
         pushButton_4->setText(QApplication::translate("MainWindow", "Ok", Q_NULLPTR));
         label_5->setText(QApplication::translate("MainWindow", "X2L", Q_NULLPTR));
         label_6->setText(QApplication::translate("MainWindow", "X1L", Q_NULLPTR));
+        Cvalue->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
+        Lvalue->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
+        btn_path->setText(QApplication::translate("MainWindow", "Get Path", Q_NULLPTR));
+        label_10->setText(QApplication::translate("MainWindow", "Final Point:", Q_NULLPTR));
+        lSeriesRadioButton->setText(QApplication::translate("MainWindow", "L series", Q_NULLPTR));
+        lShuntRadioButton->setText(QApplication::translate("MainWindow", "L shunt", Q_NULLPTR));
+        cShuntRadioButton->setText(QApplication::translate("MainWindow", "C shunt", Q_NULLPTR));
+        LClabel->setText(QString());
     } // retranslateUi
 
 };

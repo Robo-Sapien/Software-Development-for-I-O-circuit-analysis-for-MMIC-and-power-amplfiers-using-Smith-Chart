@@ -15,10 +15,41 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0" rowspan="3">
+    <item row="0" column="0" rowspan="14">
      <widget class="RenderArea" name="renderArea" native="true"/>
     </item>
-    <item row="0" column="1" rowspan="2">
+    <item row="7" column="5">
+     <widget class="QDoubleSpinBox" name="frequencyLC"/>
+    </item>
+    <item row="8" column="5">
+     <widget class="QPushButton" name="pathButton">
+      <property name="text">
+       <string>Get Path</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="5">
+     <widget class="QPushButton" name="pathStopButton">
+      <property name="text">
+       <string>Stop</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="5">
+     <widget class="QLabel" name="label_8">
+      <property name="text">
+       <string>Frequency:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="5">
+     <widget class="QRadioButton" name="cSeriesRadioButton">
+      <property name="text">
+       <string>C series</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1" rowspan="13">
      <layout class="QVBoxLayout" name="verticalLayout_7">
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -261,28 +292,28 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="3">
-     <widget class="QLabel" name="Lvalue">
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="4">
+    <item row="12" column="4">
      <widget class="QLabel" name="Cvalue">
       <property name="text">
        <string>TextLabel</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="2">
+    <item row="12" column="3">
+     <widget class="QLabel" name="Lvalue">
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="2">
      <widget class="QDoubleSpinBox" name="frequency2">
       <property name="maximum">
        <double>9999.000000000000000</double>
       </property>
      </widget>
     </item>
-    <item row="2" column="4">
+    <item row="13" column="4">
      <widget class="QDoubleSpinBox" name="Inductance">
       <property name="decimals">
        <number>10</number>
@@ -298,7 +329,14 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="5">
+    <item row="13" column="3">
+     <widget class="QPushButton" name="btn_path">
+      <property name="text">
+       <string>Get Path</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="5">
      <widget class="QDoubleSpinBox" name="Capacitance">
       <property name="decimals">
        <number>10</number>
@@ -308,10 +346,41 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="3">
-     <widget class="QPushButton" name="btn_path">
+    <item row="10" column="5">
+     <widget class="QLabel" name="label_10">
       <property name="text">
-       <string>Get Path</string>
+       <string>Final Point:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="5">
+     <widget class="QDoubleSpinBox" name="LCvalue"/>
+    </item>
+    <item row="2" column="5">
+     <widget class="QRadioButton" name="lSeriesRadioButton">
+      <property name="text">
+       <string>L series</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="5">
+     <widget class="QRadioButton" name="lShuntRadioButton">
+      <property name="text">
+       <string>L shunt</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="5">
+     <widget class="QRadioButton" name="cShuntRadioButton">
+      <property name="text">
+       <string>C shunt</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="5">
+     <widget class="QLabel" name="LClabel">
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </item>
@@ -326,6 +395,17 @@
    <zorder>Cvalue</zorder>
    <zorder>Capacitance</zorder>
    <zorder>btn_path</zorder>
+   <zorder>cSeriesRadioButton</zorder>
+   <zorder>lSeriesRadioButton</zorder>
+   <zorder>cShuntRadioButton</zorder>
+   <zorder>lShuntRadioButton</zorder>
+   <zorder>pathStopButton</zorder>
+   <zorder>pathButton</zorder>
+   <zorder>frequencyLC</zorder>
+   <zorder>LCvalue</zorder>
+   <zorder>label_8</zorder>
+   <zorder>LClabel</zorder>
+   <zorder>label_10</zorder>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>

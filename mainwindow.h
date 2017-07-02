@@ -74,6 +74,18 @@ private slots:
 
     void on_btn_path_clicked();
 
+    void on_pathButton_clicked();
+
+    void on_pathStopButton_clicked();
+
+    void on_cSeriesRadioButton_clicked();
+
+    void on_cShuntRadioButton_clicked();
+
+    void on_lSeriesRadioButton_clicked();
+
+    void on_lShuntRadioButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 

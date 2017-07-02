@@ -237,3 +237,56 @@ void MainWindow::on_btn_path_clicked()
     this->ui->Cvalue->setText( QString::number(this->ui->renderArea->C));
     this->ui->renderArea->flag[12] = false;
 }
+
+void MainWindow::on_pathButton_clicked()
+{
+    this->ui->renderArea->Val=this->ui->LCvalue->value();
+    this->ui->renderArea->w=this->ui->frequencyLC->value();
+    if(this->ui->cSeriesRadioButton->isChecked()){
+        this->ui->renderArea->flag[13]=true;
+    }
+    else if(this->ui->cShuntRadioButton->isChecked()){
+        this->ui->renderArea->flag[14]=true;
+    }
+    else if(this->ui->lSeriesRadioButton->isChecked()){
+        this->ui->renderArea->flag[15]=true;
+    }
+    else if(this->ui->lShuntRadioButton->isChecked()){
+        this->ui->renderArea->flag[16]=true;
+    }
+    else
+        QMessageBox::information(0,"Error!","Unselected Arguments");
+    this->ui->renderArea->flag[13]=false;
+    this->ui->renderArea->flag[14]=false;
+    this->ui->renderArea->flag[15]=false;
+    this->ui->renderArea->flag[16]=false;
+}
+
+
+
+void MainWindow::on_pathStopButton_clicked()
+{
+    this->ui->renderArea->repaint();
+}
+
+void MainWindow::on_cSeriesRadioButton_clicked()
+{
+    this->ui->LClabel->setText("Capacitance Value:");
+}
+
+void MainWindow::on_cShuntRadioButton_clicked()
+{
+    this->ui->LClabel->setText("Capacitance Value:");
+}
+
+
+void MainWindow::on_lSeriesRadioButton_clicked()
+{
+    this->ui->LClabel->setText("Inductance Value:");
+}
+
+
+void MainWindow::on_lShuntRadioButton_clicked()
+{
+    this->ui->LClabel->setText("Inductance Value:");
+}
