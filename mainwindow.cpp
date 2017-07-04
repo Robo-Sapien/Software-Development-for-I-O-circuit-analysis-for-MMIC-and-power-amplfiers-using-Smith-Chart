@@ -240,53 +240,92 @@ void MainWindow::on_btn_path_clicked()
 
 void MainWindow::on_pathButton_clicked()
 {
+    this->ui->renderArea->step_count+=1;
+    this->ui->renderArea->flag[13] = true;
     this->ui->renderArea->Val=this->ui->LCvalue->value();
-    this->ui->renderArea->w=this->ui->frequencyLC->value();
+    this->ui->renderArea->step_array[(this->ui->renderArea->step_count)-1].Val = this->ui->LCvalue->value();
+    this->ui->renderArea->w=2*M_PI*(this->ui->frequencyLC->value());
+
     if(this->ui->cSeriesRadioButton->isChecked()){
-        this->ui->renderArea->flag[13]=true;
+        this->ui->renderArea->setTopology(this->ui->renderArea->Series_Capacitance);
+        this->ui->renderArea->step_array[(this->ui->renderArea->step_count)-1].topology = this->ui->renderArea->getTopology();
+        this->ui->renderArea->repaint();
+        this->ui->A->setText(this->ui->renderArea->ABCD.val[0][0].display());
+        this->ui->B->setText(this->ui->renderArea->ABCD.val[1][0].display());
+        this->ui->C->setText(this->ui->renderArea->ABCD.val[0][1].display());
+        this->ui->D->setText(this->ui->renderArea->ABCD.val[1][1].display());
     }
     else if(this->ui->cShuntRadioButton->isChecked()){
-        this->ui->renderArea->flag[14]=true;
+       this->ui->renderArea->setTopology(this->ui->renderArea->Shunt_Capacitance);
+        this->ui->renderArea->step_array[(this->ui->renderArea->step_count)-1].topology = this->ui->renderArea->getTopology();
+         this->ui->renderArea->repaint();
+
     }
     else if(this->ui->lSeriesRadioButton->isChecked()){
-        this->ui->renderArea->flag[15]=true;
+       this->ui->renderArea->setTopology(this->ui->renderArea->Series_Inductance);
+        this->ui->renderArea->step_array[(this->ui->renderArea->step_count)-1].topology = this->ui->renderArea->getTopology();
+         this->ui->renderArea->repaint();
     }
     else if(this->ui->lShuntRadioButton->isChecked()){
-        this->ui->renderArea->flag[16]=true;
+        this->ui->renderArea->setTopology(this->ui->renderArea->Shunt_Inductance);
+        this->ui->renderArea->step_array[(this->ui->renderArea->step_count)-1].topology = this->ui->renderArea->getTopology();
+         this->ui->renderArea->repaint();
     }
-    else
+    else{
         QMessageBox::information(0,"Error!","Unselected Arguments");
     this->ui->renderArea->flag[13]=false;
-    this->ui->renderArea->flag[14]=false;
-    this->ui->renderArea->flag[15]=false;
-    this->ui->renderArea->flag[16]=false;
+    }
+    this->ui->A->setText(this->ui->renderArea->ABCD.val[0][0].display());
+    this->ui->B->setText(this->ui->renderArea->ABCD.val[1][0].display());
+    this->ui->C->setText(this->ui->renderArea->ABCD.val[0][1].display());
+    this->ui->D->setText(this->ui->renderArea->ABCD.val[1][1].display());
 }
 
 
 
 void MainWindow::on_pathStopButton_clicked()
 {
+    this->ui->renderArea->flag[13] = false;
+    this->ui->renderArea->flag[19] = true;
+    this->ui->label_10->setText(QString::number(this->ui->renderArea->step_array[0].Val));
     this->ui->renderArea->repaint();
+    this->ui->A->setText(this->ui->renderArea->ABCD.val[0][0].display());
+    this->ui->B->setText(this->ui->renderArea->ABCD.val[1][0].display());
+    this->ui->C->setText(this->ui->renderArea->ABCD.val[0][1].display());
+    this->ui->D->setText(this->ui->renderArea->ABCD.val[1][1].display());
+
+    this->ui->label_10->setText("Final Point: "+ QString::number(this->ui->renderArea->initial_point.x()) + " + " +
+                                QString::number(this->ui->renderArea->initial_point.y()) + "j");
+
+
+
+
+
+
+    this->ui->renderArea->step_count = 0;
+    this->ui->renderArea->initial_point = QPointF(1, 0);
+    this->ui->renderArea->flag[14] = false;
+
 }
 
 void MainWindow::on_cSeriesRadioButton_clicked()
 {
-    this->ui->LClabel->setText("Capacitance Value:");
+    this->ui->LClabel->setText("Capacitance Value(nF):");
 }
 
 void MainWindow::on_cShuntRadioButton_clicked()
 {
-    this->ui->LClabel->setText("Capacitance Value:");
+    this->ui->LClabel->setText("Capacitance Value(nF):");
 }
 
 
 void MainWindow::on_lSeriesRadioButton_clicked()
 {
-    this->ui->LClabel->setText("Inductance Value:");
+    this->ui->LClabel->setText("Inductance Value(nH):");
 }
 
 
 void MainWindow::on_lShuntRadioButton_clicked()
 {
-    this->ui->LClabel->setText("Inductance Value:");
+    this->ui->LClabel->setText("Inductance Value(nH):");
 }
