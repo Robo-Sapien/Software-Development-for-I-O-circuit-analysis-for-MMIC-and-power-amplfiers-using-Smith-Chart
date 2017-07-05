@@ -3,6 +3,8 @@
 #include <QMessageBox>
 #include "global.h"
 #include "dialogmat.h"
+#include <QFile>
+#include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -240,6 +242,7 @@ void MainWindow::on_btn_path_clicked()
 
 void MainWindow::on_pathButton_clicked()
 {
+
     this->ui->renderArea->step_count+=1;
     this->ui->renderArea->flag[13] = true;
     this->ui->renderArea->Val=this->ui->LCvalue->value();
@@ -297,6 +300,13 @@ void MainWindow::on_pathStopButton_clicked()
 {
     this->ui->renderArea->flag[13] = false;
     this->ui->renderArea->flag[19] = true;
+    this->ui->renderArea->ofile.close();
+    QFile file("log.txt");
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)){
+    QTextStream in(&file);
+    this->ui->textBrowser->setText(in.readAll());
+    }
+
     this->ui->label_10->setText(QString::number(this->ui->renderArea->step_array[0].Val));
     this->ui->renderArea->repaint();
     this->ui->A->setText(this->ui->renderArea->ABCD.val[0][0].display());

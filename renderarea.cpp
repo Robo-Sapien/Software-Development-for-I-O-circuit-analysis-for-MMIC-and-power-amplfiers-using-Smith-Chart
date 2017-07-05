@@ -383,6 +383,15 @@ if(flag[13]) {
 
             ABCD.val[0][0]=1;ABCD.val[1][0]=0;ABCD.val[0][1]=0;ABCD.val[1][1]=1;
         }
+        if (!flag[18]){
+            ofile.open("log.txt");
+            if(!ofile.is_open()){
+                QMessageBox::information(0,"error","File Could not be opened!");
+                close();
+            }
+            ofile<<"L/C type"<<'\t'<<"Value(nH/nF)"<<endl;
+        }
+        flag[18]=true;
         flag[14] = true;
         if ( flag[14]) {
              initial_x = initial_point.x();
@@ -421,6 +430,7 @@ if(flag[13]) {
             complex z(initial_point.x(),initial_point.y());
             matrix abcd=setSeries(z);
             ABCD=ABCD*abcd;
+            ofile<<"L-Series"<<'\t'<<Val<<endl;
 
             break;
          }
@@ -460,9 +470,13 @@ if(flag[13]) {
                 initial_point = impedence_admittance(initial_point.x(), initial_point.y());
                 initial_pointMin = impedence_admittance(initial_pointMin.x(), initial_pointMin.y());
                 initial_pointMax = impedence_admittance(initial_pointMax.x(), initial_pointMax.y());
+
                 complex z(initial_point.x(),initial_point.y());
                 matrix abcd=setShunt(z);
                 ABCD=ABCD*abcd;
+                string str = z.display().toLocal8Bit().constData();
+
+                ofile<<"C-Shunt"<<'\t'<<Val<<endl;
 
             break;
           }
@@ -504,6 +518,7 @@ if(flag[13]) {
         complex z(initial_point.x(),initial_point.y());
         matrix abcd=setSeries(z);
         ABCD=ABCD*abcd;
+        ofile<<"C-Series"<<'\t'<<Val<<endl;
 
         break;
      }
@@ -517,7 +532,7 @@ if(flag[13]) {
             initial_y = initial_point.y();
 
 
-            for(; L >= Val; L-=(Val/100000)) {
+            for(; L >= Val; L-=(Val/1000)) {
 
                 if(L == 0)
                 {
@@ -551,6 +566,7 @@ if(flag[13]) {
             complex z(initial_point.x(),initial_point.y());
             matrix abcd=setShunt(z);
             ABCD=ABCD*abcd;
+            ofile<<"L-Shunt"<<'\t'<<Val<<endl;
 
         break;
       }
@@ -720,7 +736,7 @@ if(flag[13]) {
                double L = 999;
 
                    initial_point = impedence_admittance(initial_point.x(), initial_point.y());
-                   initial_y = initial_point.y();                   
+                   initial_y = initial_point.y();
 
                    initial_pointMin = impedence_admittance(initial_pointMin.x(), initial_pointMin.y());
                    initial_yMin = initial_pointMin.y();
@@ -730,7 +746,7 @@ if(flag[13]) {
 
 
 
-                   for(; L >= step_array[i].Val; L-=( step_array[i].Val/100000)) {
+                   for(; L >= step_array[i].Val; L-=( step_array[i].Val/1000)) {
 
                        if(L == 0)
                        {

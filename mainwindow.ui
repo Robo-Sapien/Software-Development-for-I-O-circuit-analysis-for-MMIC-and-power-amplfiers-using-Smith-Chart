@@ -15,8 +15,150 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0" rowspan="13">
+    <item row="0" column="0" rowspan="14">
      <widget class="RenderArea" name="renderArea" native="true"/>
+    </item>
+    <item row="11" column="5">
+     <layout class="QFormLayout" name="formLayout_2">
+      <item row="1" column="0">
+       <widget class="QLabel" name="C">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="B">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="A">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="D">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="8" column="4">
+     <widget class="QDoubleSpinBox" name="MinF">
+      <property name="decimals">
+       <number>8</number>
+      </property>
+      <property name="singleStep">
+       <double>1.000000000000000</double>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QDoubleSpinBox" name="S1Mag">
+      <property name="decimals">
+       <number>3</number>
+      </property>
+      <property name="singleStep">
+       <double>0.001000000000000</double>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QDoubleSpinBox" name="ZinputY">
+      <property name="maximum">
+       <double>9999.000000000000000</double>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="4">
+     <widget class="QDoubleSpinBox" name="S3angle">
+      <property name="decimals">
+       <number>3</number>
+      </property>
+      <property name="minimum">
+       <double>-360.000000000000000</double>
+      </property>
+      <property name="maximum">
+       <double>360.000000000000000</double>
+      </property>
+      <property name="singleStep">
+       <double>0.001000000000000</double>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3" colspan="2">
+     <widget class="QLabel" name="label_13">
+      <property name="text">
+       <string>                 S11 parameters</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3">
+     <widget class="QDoubleSpinBox" name="S2Mag">
+      <property name="decimals">
+       <number>3</number>
+      </property>
+      <property name="singleStep">
+       <double>0.001000000000000</double>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="4">
+     <widget class="QDoubleSpinBox" name="S2angle">
+      <property name="decimals">
+       <number>3</number>
+      </property>
+      <property name="minimum">
+       <double>-360.000000000000000</double>
+      </property>
+      <property name="maximum">
+       <double>360.000000000000000</double>
+      </property>
+      <property name="singleStep">
+       <double>0.001000000000000</double>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="3">
+     <widget class="QLabel" name="label_12">
+      <property name="text">
+       <string>Min Frequency (GHz)</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="3">
+     <widget class="QDoubleSpinBox" name="S3Mag">
+      <property name="decimals">
+       <number>3</number>
+      </property>
+      <property name="singleStep">
+       <double>0.001000000000000</double>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="2">
+     <widget class="QTextBrowser" name="textBrowser"/>
+    </item>
+    <item row="7" column="3">
+     <widget class="QLabel" name="label_11">
+      <property name="text">
+       <string>Max Frequency (GHz)</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QLabel" name="label_9">
+      <property name="text">
+       <string>Steps:</string>
+      </property>
+     </widget>
     </item>
     <item row="7" column="4">
      <widget class="QDoubleSpinBox" name="MaxF">
@@ -25,6 +167,16 @@
       </property>
       <property name="singleStep">
        <double>1.000000000000000</double>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="5">
+     <widget class="QDoubleSpinBox" name="Capacitance">
+      <property name="decimals">
+       <number>10</number>
+      </property>
+      <property name="singleStep">
+       <double>0.000010000000000</double>
       </property>
      </widget>
     </item>
@@ -260,13 +412,13 @@
       </item>
      </layout>
     </item>
-    <item row="12" column="5">
-     <widget class="QDoubleSpinBox" name="Capacitance">
+    <item row="5" column="5">
+     <widget class="QDoubleSpinBox" name="LCvalue">
       <property name="decimals">
-       <number>10</number>
+       <number>8</number>
       </property>
-      <property name="singleStep">
-       <double>0.000010000000000</double>
+      <property name="maximum">
+       <double>999999.000000000000000</double>
       </property>
      </widget>
     </item>
@@ -284,48 +436,10 @@
       </property>
      </widget>
     </item>
-    <item row="5" column="5">
-     <widget class="QDoubleSpinBox" name="LCvalue">
-      <property name="decimals">
-       <number>8</number>
-      </property>
-      <property name="maximum">
-       <double>999999.000000000000000</double>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="5">
-     <widget class="QLabel" name="LClabel">
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="5">
-     <widget class="QRadioButton" name="lSeriesRadioButton">
-      <property name="text">
-       <string>L series</string>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="5">
-     <widget class="QLabel" name="label_10">
-      <property name="text">
-       <string>Final Point:</string>
-      </property>
-     </widget>
-    </item>
     <item row="8" column="5">
      <widget class="QPushButton" name="pathButton">
       <property name="text">
        <string>Get Path</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="5">
-     <widget class="QDoubleSpinBox" name="frequencyLC">
-      <property name="decimals">
-       <number>8</number>
       </property>
      </widget>
     </item>
@@ -336,10 +450,24 @@
       </property>
      </widget>
     </item>
-    <item row="9" column="5">
-     <widget class="QPushButton" name="pathStopButton">
+    <item row="7" column="5">
+     <widget class="QDoubleSpinBox" name="frequencyLC">
+      <property name="decimals">
+       <number>8</number>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="5">
+     <widget class="QRadioButton" name="lSeriesRadioButton">
       <property name="text">
-       <string>Stop</string>
+       <string>L series</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="5">
+     <widget class="QLabel" name="LClabel">
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </item>
@@ -350,14 +478,21 @@
       </property>
      </widget>
     </item>
-    <item row="11" column="4">
-     <widget class="QLabel" name="Cvalue">
+    <item row="10" column="5">
+     <widget class="QLabel" name="label_10">
       <property name="text">
-       <string>TextLabel</string>
+       <string>Final Point:</string>
       </property>
      </widget>
     </item>
-    <item row="12" column="4">
+    <item row="9" column="5">
+     <widget class="QPushButton" name="pathStopButton">
+      <property name="text">
+       <string>Stop</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="4">
      <widget class="QDoubleSpinBox" name="Inductance">
       <property name="decimals">
        <number>10</number>
@@ -373,54 +508,22 @@
       </property>
      </widget>
     </item>
-    <item row="12" column="2">
+    <item row="13" column="2">
      <widget class="QDoubleSpinBox" name="frequency2">
       <property name="maximum">
        <double>9999.000000000000000</double>
       </property>
      </widget>
     </item>
-    <item row="12" column="3">
+    <item row="13" column="3">
      <widget class="QPushButton" name="btn_path">
       <property name="text">
        <string>Get Path</string>
       </property>
      </widget>
     </item>
-    <item row="11" column="5">
-     <layout class="QFormLayout" name="formLayout_2">
-      <item row="1" column="0">
-       <widget class="QLabel" name="C">
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLabel" name="B">
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="A">
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLabel" name="D">
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="11" column="3">
-     <widget class="QLabel" name="Lvalue">
+    <item row="11" column="4">
+     <widget class="QLabel" name="Cvalue">
       <property name="text">
        <string>TextLabel</string>
       </property>
@@ -436,157 +539,15 @@
       </property>
      </widget>
     </item>
+    <item row="11" column="3">
+     <widget class="QLabel" name="Lvalue">
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="4">
      <widget class="QDoubleSpinBox" name="S1angle">
-      <property name="decimals">
-       <number>3</number>
-      </property>
-      <property name="minimum">
-       <double>-360.000000000000000</double>
-      </property>
-      <property name="maximum">
-       <double>360.000000000000000</double>
-      </property>
-      <property name="singleStep">
-       <double>0.001000000000000</double>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="3">
-     <widget class="QDoubleSpinBox" name="S1Mag">
-      <property name="decimals">
-       <number>3</number>
-      </property>
-      <property name="singleStep">
-       <double>0.001000000000000</double>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="2">
-     <widget class="QLabel" name="step_1">
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="2">
-     <widget class="QLabel" name="step_6">
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="2">
-     <widget class="QLabel" name="step_5">
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="2">
-     <widget class="QLabel" name="step_3">
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="2">
-     <widget class="QLabel" name="step_4">
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="2">
-     <widget class="QLabel" name="step_2">
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="4">
-     <widget class="QDoubleSpinBox" name="MinF">
-      <property name="decimals">
-       <number>8</number>
-      </property>
-      <property name="singleStep">
-       <double>1.000000000000000</double>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="4">
-     <widget class="QDoubleSpinBox" name="S3angle">
-      <property name="decimals">
-       <number>3</number>
-      </property>
-      <property name="minimum">
-       <double>-360.000000000000000</double>
-      </property>
-      <property name="maximum">
-       <double>360.000000000000000</double>
-      </property>
-      <property name="singleStep">
-       <double>0.001000000000000</double>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="3">
-     <widget class="QLabel" name="label_9">
-      <property name="text">
-       <string>                        Steps</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="3">
-     <widget class="QLabel" name="label_11">
-      <property name="text">
-       <string>Max Frequency (GHz)</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="3">
-     <widget class="QLabel" name="label_12">
-      <property name="text">
-       <string>Min Frequency (GHz)</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="2">
-     <widget class="QDoubleSpinBox" name="ZinputY">
-      <property name="maximum">
-       <double>9999.000000000000000</double>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="3">
-     <widget class="QDoubleSpinBox" name="S2Mag">
-      <property name="decimals">
-       <number>3</number>
-      </property>
-      <property name="singleStep">
-       <double>0.001000000000000</double>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="3">
-     <widget class="QDoubleSpinBox" name="S3Mag">
-      <property name="decimals">
-       <number>3</number>
-      </property>
-      <property name="singleStep">
-       <double>0.001000000000000</double>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="3" colspan="2">
-     <widget class="QLabel" name="label_13">
-      <property name="text">
-       <string>                 S11 parameters</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="4">
-     <widget class="QDoubleSpinBox" name="S2angle">
       <property name="decimals">
        <number>3</number>
       </property>
@@ -621,13 +582,6 @@
    <zorder>label_10</zorder>
    <zorder>frequencyLC</zorder>
    <zorder>LCvalue</zorder>
-   <zorder></zorder>
-   <zorder>step_1</zorder>
-   <zorder>step_2</zorder>
-   <zorder>step_4</zorder>
-   <zorder>step_3</zorder>
-   <zorder>step_5</zorder>
-   <zorder>step_6</zorder>
    <zorder>MinF</zorder>
    <zorder>MaxF</zorder>
    <zorder>label_11</zorder>
@@ -635,12 +589,13 @@
    <zorder>S2Mag</zorder>
    <zorder>S3Mag</zorder>
    <zorder>S3angle</zorder>
-   <zorder>label_9</zorder>
    <zorder>S1Mag</zorder>
    <zorder>S1angle</zorder>
    <zorder>ZinputY</zorder>
    <zorder>label_13</zorder>
    <zorder>S2angle</zorder>
+   <zorder>textBrowser</zorder>
+   <zorder>label_9</zorder>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>

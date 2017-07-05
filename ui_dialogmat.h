@@ -53,6 +53,7 @@ public:
     QLabel *label;
     QLabel *label_6;
     QRadioButton *TButton;
+    QRadioButton *radioButton;
 
     void setupUi(QWidget *dialogmat)
     {
@@ -159,6 +160,9 @@ public:
         TButton = new QRadioButton(dialogmat);
         TButton->setObjectName(QStringLiteral("TButton"));
         TButton->setGeometry(QRect(290, 90, 82, 17));
+        radioButton = new QRadioButton(dialogmat);
+        radioButton->setObjectName(QStringLiteral("radioButton"));
+        radioButton->setGeometry(QRect(210, 260, 106, 22));
 
         retranslateUi(dialogmat);
 
@@ -185,6 +189,7 @@ public:
         label->setText(QApplication::translate("dialogmat", "z1 =", Q_NULLPTR));
         label_6->setText(QApplication::translate("dialogmat", "z3 =", Q_NULLPTR));
         TButton->setText(QApplication::translate("dialogmat", "T circuit", Q_NULLPTR));
+        radioButton->setText(QApplication::translate("dialogmat", "RadioButton", Q_NULLPTR));
     } // retranslateUi
 
 };

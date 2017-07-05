@@ -4,6 +4,9 @@
 #include <QColor>
 #include <QVector>
 #include <QMessageBox>
+#include <fstream>
+#include <iostream>
+using namespace std;
 class RenderArea : public QWidget
 {
     Q_OBJECT
@@ -176,6 +179,8 @@ public:
         m.val[0][0]=1;m.val[0][1]=0;m.val[1][0]=one/z;m.val[1][1]=1;
         return m;
     }
+
+    ofstream ofile;
 
     struct Step
     {
