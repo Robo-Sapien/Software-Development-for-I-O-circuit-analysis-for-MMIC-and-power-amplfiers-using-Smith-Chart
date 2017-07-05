@@ -81,7 +81,9 @@ void dialogmat::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_pushButton_clicked(); break;
-
+        //case 1: _t->on_CustomButton_clicked(); break;
+        //case 2: _t->on_CustomButton_clicked((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        //case 3: _t->on_z3img_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         default: ;
         }
     }

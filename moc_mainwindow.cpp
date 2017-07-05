@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../Software_DRDO/mainwindow.h"
+#include "../mainwindow.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
@@ -216,7 +216,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->on_btnImaginary_clicked(); break;
         case 2: _t->on_btnSuperimpose_clicked(); break;
         case 3: _t->on_doubleSpinBox_2_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
-        //case 4: _t->on_pushButton_clicked(); break;
+
         case 5: _t->on_pushButton_2_clicked(); break;
         case 6: _t->on_doubleSpinBox_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 7: _t->on_doubleSpinBox_3_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
@@ -236,7 +236,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 21: _t->on_ZinputY_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 22: _t->on_frequency2_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 23: _t->on_Inductance_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
-        //case 24: _t->on_doubleSpinBox_9_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+
         case 25: _t->on_Capacitance_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 26: _t->on_btn_path_clicked(); break;
         case 27: _t->on_pathButton_clicked(); break;
