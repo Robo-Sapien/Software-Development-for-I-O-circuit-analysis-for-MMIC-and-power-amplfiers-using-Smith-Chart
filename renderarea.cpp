@@ -355,19 +355,42 @@ QPointF RenderArea::compute_imaginary(float t)
 
 if(flag[13]) {
 
+        painter.setPen(QPen(Qt::red, 4));
+        S1.setX(S1Mag*cos(S1angle));
+        S1.setY(S1Mag*sin(S1angle));
+        S2.setX(S2Mag*cos(S2angle));
+        S2.setY(S2Mag*sin(S2angle));
+        S3.setX(S3Mag*cos(S3angle));
+        S3.setY(S3Mag*sin(S3angle));
+        painter.drawPoint(S1.x()*scale+center.x(),S1.y()*scale+center.y());
+        painter.drawPoint(S2.x()*scale+center.x(),S2.y()*scale+center.y());
+        painter.drawPoint(S3.x()*scale+center.x(),S3.y()*scale+center.y());
         painter.setPen(QPen(Qt::red, 2));
+
+
 
         double initial_y;
         double initial_x;
+        double initial_yMin;
+        double initial_xMin;
+        double initial_yMax;
+        double initial_xMax;
 
         if (!flag[14]) {
             initial_point = QPointF(1, 0);
+            initial_pointMin=QPointF(1, 0);
+            initial_pointMax=QPointF(1,0);
+
             ABCD.val[0][0]=1;ABCD.val[1][0]=0;ABCD.val[0][1]=0;ABCD.val[1][1]=1;
         }
         flag[14] = true;
         if ( flag[14]) {
              initial_x = initial_point.x();
              initial_y = initial_point.y();
+             initial_xMin = initial_pointMin.x();
+             initial_yMin = initial_pointMin.y();
+             initial_xMax = initial_pointMax.x();
+             initial_yMax = initial_pointMax.y();
          }
 
 
@@ -381,8 +404,20 @@ if(flag[13]) {
             {
 
                 initial_point.setY(initial_y + ((w*L)/50));
+                 painter.setPen(QPen(Qt::red, 2));
                 painter.drawPoint(Z_to_Gamma(initial_point.x(), initial_point.y()));
+
+                initial_pointMin.setY(initial_yMin + ((wMin*L)/50));
+                painter.setPen(QPen(Qt::green, 2));
+                painter.drawPoint(Z_to_Gamma(initial_pointMin.x(), initial_pointMin.y()));
+
+                initial_pointMax.setY(initial_yMax + ((wMax*L)/50));
+                painter.setPen(QPen(Qt::magenta, 2));
+                painter.drawPoint(Z_to_Gamma(initial_pointMax.x(), initial_pointMax.y()));
             }
+
+            painter.setPen(QPen(Qt::red, 2));
+
             complex z(initial_point.x(),initial_point.y());
             matrix abcd=setSeries(z);
             ABCD=ABCD*abcd;
@@ -398,14 +433,33 @@ if(flag[13]) {
                 initial_point = impedence_admittance(initial_point.x(), initial_point.y());
                 initial_y = initial_point.y();
 
+                initial_pointMin = impedence_admittance(initial_pointMin.x(), initial_pointMin.y());
+                initial_yMin = initial_pointMin.y();
+
+                initial_pointMax = impedence_admittance(initial_pointMax.x(), initial_pointMax.y());
+                initial_yMax = initial_pointMax.y();
+
 
                 for(; C <= Val; C+=(Val/1000)) {
 
                     initial_point.setY( initial_y + ((w*C)*50));
+                    painter.setPen(QPen(Qt::red, 2));
                     painter.drawPoint(Y_to_Gamma(initial_point.x(), initial_point.y()));
+
+                    initial_pointMin.setY( initial_yMin + ((wMin*C)*50));
+                    painter.setPen(QPen(Qt::green, 2));
+                    painter.drawPoint(Y_to_Gamma(initial_pointMin.x(), initial_pointMin.y()));
+
+                    initial_pointMax.setY( initial_yMax + ((wMax*C)*50));
+                    painter.setPen(QPen(Qt::magenta, 2));
+                    painter.drawPoint(Y_to_Gamma(initial_pointMax.x(), initial_pointMax.y()));
+
                 }
 
+                painter.setPen(QPen(Qt::red, 2));
                 initial_point = impedence_admittance(initial_point.x(), initial_point.y());
+                initial_pointMin = impedence_admittance(initial_pointMin.x(), initial_pointMin.y());
+                initial_pointMax = impedence_admittance(initial_pointMax.x(), initial_pointMax.y());
                 complex z(initial_point.x(),initial_point.y());
                 matrix abcd=setShunt(z);
                 ABCD=ABCD*abcd;
@@ -417,16 +471,36 @@ if(flag[13]) {
 
         case Series_Capacitance:
     {
-        double C = 0;
+        double C = 999;
 
 
-        for(; C<= Val; C += Val/1000 )
+        for(; C>= Val; C -= Val/10000 )
         {
 
-            if(C == 0) initial_point.setY(0);
-            else initial_point.setY( initial_y - (50/(w*C)));
-            painter.drawPoint(Z_to_Gamma(initial_point.x(), initial_point.y()));
+            if(C == 0)
+            {
+                initial_point.setY(0);
+                initial_pointMin.setY(0);
+                initial_pointMax.setY(0);
+            }
+            else
+                {
+                    initial_point.setY( initial_y - (50/(w*C)));
+                     painter.setPen(QPen(Qt::red, 2));
+                painter.drawPoint(Z_to_Gamma(initial_point.x(), initial_point.y()));
+
+                initial_pointMin.setY( initial_yMin - (50/(wMin*C)));
+                 painter.setPen(QPen(Qt::green, 2));
+            painter.drawPoint(Z_to_Gamma(initial_pointMin.x(), initial_pointMin.y()));
+
+            initial_pointMax.setY( initial_yMax - (50/(wMax*C)));
+             painter.setPen(QPen(Qt::magenta, 2));
+        painter.drawPoint(Z_to_Gamma(initial_pointMax.x(), initial_pointMax.y()));
+
+
+                }
         }
+        painter.setPen(QPen(Qt::red, 2));
         complex z(initial_point.x(),initial_point.y());
         matrix abcd=setSeries(z);
         ABCD=ABCD*abcd;
@@ -437,21 +511,43 @@ if(flag[13]) {
         case Shunt_Inductance:
 
     {
-        double L = 0;
+        double L = 999;
 
             initial_point = impedence_admittance(initial_point.x(), initial_point.y());
             initial_y = initial_point.y();
 
 
-            for(; L <= Val; L+=(Val/100000)) {
+            for(; L >= Val; L-=(Val/100000)) {
 
-                if(L == 0) initial_point.setY(0);
-                else initial_point.setY( initial_y - (50/(w*L)));
+                if(L == 0)
+                {
+                    initial_point.setY(0);
+                    initial_pointMin.setY(0);
+                    initial_pointMax.setY(0);
 
+                }
+                else
+                {
+                initial_point.setY( initial_y - (50/(w*L)));
+                painter.setPen(QPen(Qt::red, 2));
                 painter.drawPoint(Y_to_Gamma(initial_point.x(), initial_point.y()));
+
+                initial_pointMin.setY( initial_yMin - (50/(wMin*L)));
+                painter.setPen(QPen(Qt::green, 2));
+                painter.drawPoint(Y_to_Gamma(initial_pointMin.x(), initial_pointMin.y()));
+
+                initial_pointMax.setY( initial_yMax - (50/(wMax*L)));
+                painter.setPen(QPen(Qt::magenta, 2));
+                painter.drawPoint(Y_to_Gamma(initial_pointMax.x(), initial_pointMax.y()));
+
+
+                }
             }
+             painter.setPen(QPen(Qt::red, 2));
 
             initial_point = impedence_admittance(initial_point.x(), initial_point.y());
+            initial_pointMin = impedence_admittance(initial_pointMin.x(), initial_pointMin.y());
+            initial_pointMax = impedence_admittance(initial_pointMax.x(), initial_pointMax.y());
             complex z(initial_point.x(),initial_point.y());
             matrix abcd=setShunt(z);
             ABCD=ABCD*abcd;
@@ -468,17 +564,31 @@ if(flag[13]) {
 
            double initial_y;
            double initial_x;
+           double initial_yMin;
+           double initial_xMin;
+           double initial_yMax;
+           double initial_xMax;
 
            initial_point = QPointF(1, 0);
+           initial_pointMin = QPointF(1, 0);
+           initial_pointMax = QPointF(1, 0);
 
            initial_x = initial_point.x();
            initial_y = initial_point.y();
+           initial_xMin = initial_pointMin.x();
+           initial_yMin = initial_pointMin.y();
+           initial_xMax = initial_pointMax.x();
+           initial_yMax = initial_pointMax.y();
 
 
            for(int i = 0; i <= step_count-1; i++) {
 
                initial_x = initial_point.x();
                initial_y = initial_point.y();
+               initial_xMin = initial_pointMin.x();
+               initial_yMin = initial_pointMin.y();
+               initial_xMax = initial_pointMax.x();
+               initial_yMax = initial_pointMax.y();
 
 
                switch(step_array[i].topology) {
@@ -491,11 +601,23 @@ if(flag[13]) {
                    {
 
                        initial_point.setY(initial_y + ((w*L)/50));
-                       if((i == (step_count-1)) && (L == step_array[i].Val)) painter.setPen(QPen(Qt::green, 10));
+                     //  if((i == (step_count-1)) && (L == step_array[i].Val)) painter.setPen(QPen(Qt::green, 10));
+                        painter.setPen(QPen(Qt::red, 2));
                        painter.drawPoint(Z_to_Gamma(initial_point.x(), initial_point.y()));
+
+                       initial_pointMin.setY(initial_yMin + ((wMin*L)/50));
+                     //  if((i == (step_count-1)) && (L == step_array[i].Val)) painter.setPen(QPen(Qt::green, 10));
+                       painter.setPen(QPen(Qt::green, 2));
+                       painter.drawPoint(Z_to_Gamma(initial_pointMin.x(), initial_pointMin.y()));
+
+                       initial_pointMax.setY(initial_yMax + ((wMax*L)/50));
+                     //  if((i == (step_count-1)) && (L == step_array[i].Val)) painter.setPen(QPen(Qt::green, 10));
+                       painter.setPen(QPen(Qt::magenta, 2));
+                       painter.drawPoint(Z_to_Gamma(initial_pointMax.x(), initial_pointMax.y()));
 
 
                    }
+                   painter.setPen(QPen(Qt::red, 2));
                    //complex z(initial_point.x(),initial_point.y());
                    //matrix abcd=setSeries(z);
                    //ABCD=ABCD*abcd;
@@ -511,15 +633,36 @@ if(flag[13]) {
                        initial_point = impedence_admittance(initial_point.x(), initial_point.y());
                        initial_y = initial_point.y();
 
+                       initial_pointMin = impedence_admittance(initial_pointMin.x(), initial_pointMin.y());
+                       initial_yMin = initial_pointMin.y();
 
-                       for(; C <=  step_array[i].Val; C+=( step_array[i].Val/1000)) {
+                       initial_pointMax = impedence_admittance(initial_pointMax.x(), initial_pointMax.y());
+                       initial_yMax = initial_pointMax.y();
+
+
+                       for(; C <=  step_array[i].Val; C+=( step_array[i].Val/10000)) {
 
                            initial_point.setY( initial_y + ((w*C)*50));
-                            if((i == (step_count-1)) && (C == step_array[i].Val)) painter.setPen(QPen(Qt::green, 10));
+                      //      if((i == (step_count-1)) && (C == step_array[i].Val)) painter.setPen(QPen(Qt::green, 10));
+                            painter.setPen(QPen(Qt::red, 2));
                            painter.drawPoint(Y_to_Gamma(initial_point.x(), initial_point.y()));
+
+                           initial_pointMin.setY( initial_yMin + ((wMin*C)*50));
+                      //      if((i == (step_count-1)) && (C == step_array[i].Val)) painter.setPen(QPen(Qt::green, 10));
+                           painter.setPen(QPen(Qt::green, 2));
+                           painter.drawPoint(Y_to_Gamma(initial_pointMin.x(), initial_pointMin.y()));
+
+                           initial_pointMax.setY( initial_yMax + ((wMax*C)*50));
+                      //      if((i == (step_count-1)) && (C == step_array[i].Val)) painter.setPen(QPen(Qt::green, 10));
+                            painter.setPen(QPen(Qt::magenta, 2));
+                           painter.drawPoint(Y_to_Gamma(initial_pointMax.x(), initial_pointMax.y()));
+
                        }
+                        painter.setPen(QPen(Qt::red, 2));
 
                        initial_point = impedence_admittance(initial_point.x(), initial_point.y());
+                       initial_pointMin = impedence_admittance(initial_pointMin.x(), initial_pointMin.y());
+                       initial_pointMax = impedence_admittance(initial_pointMax.x(), initial_pointMax.y());
                        //complex z(initial_point.x(),initial_point.y());
                        //matrix abcd=setShunt(z);
                        //ABCD=ABCD*abcd;
@@ -532,17 +675,38 @@ if(flag[13]) {
 
                case Series_Capacitance:
            {
-               double C = 0;
+               double C = 999;
 
 
-               for(; C<=  step_array[i].Val; C +=  step_array[i].Val/1000 )
+               for(; C>=  step_array[i].Val; C -=  step_array[i].Val/10000 )
                {
 
-                   if(C == 0) initial_point.setY(0);
-                   else initial_point.setY( initial_y - (50/(w*C)));
-                   if((i == (step_count-1)) && (C == step_array[i].Val)) painter.setPen(QPen(Qt::green, 4));
+                   if(C == 0)
+                   {
+                       initial_point.setY(0);
+                       initial_pointMin.setY(0);
+                       initial_pointMax.setY(0);
+                   }
+                   else
+                   {
+                   initial_point.setY( initial_y - (50/(w*C)));
+                  //if((i == (step_count-1)) && (C == step_array[i].Val)) painter.setPen(QPen(Qt::green, 4));
+                    painter.setPen(QPen(Qt::red, 2));
                    painter.drawPoint(Z_to_Gamma(initial_point.x(), initial_point.y()));
+
+                   initial_pointMin.setY( initial_yMin - (50/(wMin*C)));
+                  //if((i == (step_count-1)) && (C == step_array[i].Val)) painter.setPen(QPen(Qt::green, 4));
+                   painter.setPen(QPen(Qt::green, 2));
+                   painter.drawPoint(Z_to_Gamma(initial_pointMin.x(), initial_pointMin.y()));
+
+                   initial_pointMax.setY( initial_yMax - (50/(wMax*C)));
+                  //if((i == (step_count-1)) && (C == step_array[i].Val)) painter.setPen(QPen(Qt::green, 4));
+                   painter.setPen(QPen(Qt::magenta, 2));
+                   painter.drawPoint(Z_to_Gamma(initial_pointMax.x(), initial_pointMax.y()));
+
+                   }
                }
+               painter.setPen(QPen(Qt::red, 2));
                //complex z(initial_point.x(),initial_point.y());
                //matrix abcd=setSeries(z);
                //ABCD=ABCD*abcd;
@@ -553,22 +717,53 @@ if(flag[13]) {
                case Shunt_Inductance:
 
            {
-               double L = 0;
+               double L = 999;
 
                    initial_point = impedence_admittance(initial_point.x(), initial_point.y());
-                   initial_y = initial_point.y();
+                   initial_y = initial_point.y();                   
+
+                   initial_pointMin = impedence_admittance(initial_pointMin.x(), initial_pointMin.y());
+                   initial_yMin = initial_pointMin.y();
+
+                   initial_pointMax = impedence_admittance(initial_pointMax.x(), initial_pointMax.y());
+                   initial_yMax = initial_pointMax.y();
 
 
-                   for(; L <=  step_array[i].Val; L+=( step_array[i].Val/100000)) {
 
-                       if(L == 0) initial_point.setY(0);
-                       else initial_point.setY( initial_y - (50/(w*L)));
+                   for(; L >= step_array[i].Val; L-=( step_array[i].Val/100000)) {
 
-                       if((i == (step_count-1)) && (L == step_array[i].Val)) painter.setPen(QPen(Qt::green, 4));
+                       if(L == 0)
+                       {
+                           initial_point.setY(0);
+                           initial_pointMin.setY(0);
+                           initial_pointMax.setY(0);
+                       }
+                       else
+                       {
+                           initial_point.setY( initial_y - (50/(w*L)));
+
+                      // if((i == (step_count-1)) && (L == step_array[i].Val)) painter.setPen(QPen(Qt::green, 4));
+                            painter.setPen(QPen(Qt::red, 2));
                        painter.drawPoint(Y_to_Gamma(initial_point.x(), initial_point.y()));
-                   }
 
+                       initial_pointMin.setY( initial_yMin - (50/(wMin*L)));
+
+                  // if((i == (step_count-1)) && (L == step_array[i].Val)) painter.setPen(QPen(Qt::green, 4));
+                       painter.setPen(QPen(Qt::green, 2));
+                   painter.drawPoint(Y_to_Gamma(initial_pointMin.x(), initial_pointMin.y()));
+
+                   initial_pointMax.setY( initial_yMax - (50/(wMax*L)));
+
+              // if((i == (step_count-1)) && (L == step_array[i].Val)) painter.setPen(QPen(Qt::green, 4));
+                   painter.setPen(QPen(Qt::magenta, 2));
+               painter.drawPoint(Y_to_Gamma(initial_pointMax.x(), initial_pointMax.y()));
+
+                       }
+                   }
+                    painter.setPen(QPen(Qt::red, 2));
                    initial_point = impedence_admittance(initial_point.x(), initial_point.y());
+                   initial_pointMin = impedence_admittance(initial_pointMin.x(), initial_pointMin.y());
+                   initial_pointMax = impedence_admittance(initial_pointMax.x(), initial_pointMax.y());
                    //complex z(initial_point.x(),initial_point.y());
                    //matrix abcd=setShunt(z);
                    //ABCD=ABCD*abcd;

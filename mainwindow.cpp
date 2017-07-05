@@ -245,6 +245,16 @@ void MainWindow::on_pathButton_clicked()
     this->ui->renderArea->Val=this->ui->LCvalue->value();
     this->ui->renderArea->step_array[(this->ui->renderArea->step_count)-1].Val = this->ui->LCvalue->value();
     this->ui->renderArea->w=2*M_PI*(this->ui->frequencyLC->value());
+    this->ui->renderArea->wMax=2*M_PI*(this->ui->MaxF->value());
+    this->ui->renderArea->wMin=2*M_PI*(this->ui->MinF->value());
+     this->ui->renderArea->S1Mag=(this->ui->S1Mag->value());
+    this->ui->renderArea->S2Mag=(this->ui->S2Mag->value());
+    this->ui->renderArea->S3Mag=(this->ui->S3Mag->value());
+    this->ui->renderArea->S1angle=2*M_PI*(this->ui->S1angle->value())/360.0;
+    this->ui->renderArea->S2angle=2*M_PI*(this->ui->S2angle->value())/360.0;
+    this->ui->renderArea->S3angle=2*M_PI*(this->ui->S3angle->value())/360.0;
+
+
 
     if(this->ui->cSeriesRadioButton->isChecked()){
         this->ui->renderArea->setTopology(this->ui->renderArea->Series_Capacitance);
@@ -328,4 +338,29 @@ void MainWindow::on_lSeriesRadioButton_clicked()
 void MainWindow::on_lShuntRadioButton_clicked()
 {
     this->ui->LClabel->setText("Inductance Value(nH):");
+}
+
+void MainWindow::on_label_10_linkActivated(const QString &link)
+{
+
+}
+
+void MainWindow::on_LCvalue_valueChanged(double arg1)
+{
+
+}
+
+void MainWindow::on_frequencyLC_valueChanged(double arg1)
+{
+
+}
+
+void MainWindow::on_label_9_linkActivated(const QString &link)
+{
+
+}
+
+void MainWindow::on_LClabel_linkActivated(const QString &link)
+{
+
 }

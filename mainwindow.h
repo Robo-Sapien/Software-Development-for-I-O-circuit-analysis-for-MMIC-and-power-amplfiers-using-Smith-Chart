@@ -86,6 +86,16 @@ private slots:
 
     void on_lShuntRadioButton_clicked();
 
+    void on_label_10_linkActivated(const QString &link);
+
+    void on_LCvalue_valueChanged(double arg1);
+
+    void on_frequencyLC_valueChanged(double arg1);
+
+    void on_label_9_linkActivated(const QString &link);
+
+    void on_LClabel_linkActivated(const QString &link);
+
 private:
     Ui::MainWindow *ui;
 

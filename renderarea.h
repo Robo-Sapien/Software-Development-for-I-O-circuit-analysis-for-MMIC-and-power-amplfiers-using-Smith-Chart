@@ -149,11 +149,15 @@ public:
     double f, Rs, Rp;
     double X1L,X2L,Zin,L_l,C_l;
     double Zn = 50;
-    double w;
+    double w,wMax,wMin;
+    double S1Mag,S2Mag,S3Mag,S1angle,S2angle,S3angle;
     QPointF Zin2, Yin, Ztemp, Ytemp;
+    QPointF S1,S2,S3;
     double Cin, Lin,L, C;
     double Val;
     QPointF initial_point;
+    QPointF initial_pointMax;
+    QPointF initial_pointMin;
     enum Topology { Shunt_Capacitance, Shunt_Inductance, Series_Capacitance, Series_Inductance };
     matrix ABCD;
     complex one;
@@ -180,6 +184,7 @@ public:
     };
 
     Step step_array[20];
+
 
 
 
