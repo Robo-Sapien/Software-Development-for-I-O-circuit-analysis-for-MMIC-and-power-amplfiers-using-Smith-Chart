@@ -1,8 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#include <QTableWidgetItem>
 #include <QMainWindow>
-
 
 
 namespace Ui {
@@ -95,6 +94,10 @@ private slots:
     void on_label_9_linkActivated(const QString &link);
 
     void on_LClabel_linkActivated(const QString &link);
+
+    void on_radioButton_2_clicked();
+
+    void on_tableWidget_itemChanged(QTableWidgetItem *item);
 
 private:
     Ui::MainWindow *ui;

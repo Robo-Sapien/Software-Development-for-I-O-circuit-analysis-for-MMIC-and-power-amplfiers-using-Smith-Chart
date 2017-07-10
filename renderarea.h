@@ -82,6 +82,9 @@ public:
             QString r=QString::number(real);
             QString x=QString::number(abs(imag));
             QString num;
+            r= r.left(5);
+            x=x.left(5);
+
             if(imag>=0)
                 num=r+" + j"+x;
             else
@@ -180,7 +183,22 @@ public:
         return m;
     }
 
-    ofstream ofile;
+    updateABCD(){
+        ABCD.val[0][0]=1;ABCD.val[0][1]=0;ABCD.val[1][0]=0;ABCD.val[1][1]=1;
+        matrix abcd;
+        for(int i=0;i<step_count;i++){
+            complex z;
+            if(step_array[i].topology==Shunt_Capacitance||step_array[i].topology==Series_Capacitance)
+                z.setValue(0,-1/(2*w*M_PI*step_array[i].Val));
+            else
+                z.setValue(0,2*w*M_PI*step_array[i].Val);
+            if(step_array[i].topology==Shunt_Capacitance||step_array[i].topology==Shunt_Inductance)
+                abcd=setShunt(z);
+            else
+                abcd=setSeries(z);
+            ABCD=ABCD*abcd;
+        }
+    }
 
     struct Step
     {
@@ -230,7 +248,7 @@ private:
 
 
     float r;
-    float scale = 200;
+    float scale = 300;
     QPointF center;
     QColor mBackGroundColor;
     QColor mShapeColor;

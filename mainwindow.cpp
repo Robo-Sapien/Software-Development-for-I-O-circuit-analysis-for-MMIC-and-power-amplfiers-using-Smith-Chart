@@ -5,7 +5,10 @@
 #include "dialogmat.h"
 #include <QFile>
 #include <QTextStream>
-
+#include <QTableWidget>
+#include <QString>
+#include <QTableWidgetItem>
+#include <iostream>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -17,6 +20,10 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+
+
+
 
 void MainWindow::on_btnReal_clicked()
 {
@@ -147,6 +154,8 @@ void MainWindow::on_frequency_valueChanged(double arg1)
 void MainWindow::on_pushButton_3_clicked()
 {
     dialogmat mat;
+     mat.setFixedSize(400,300);
+     mat.showMaximized();
      mat.setModal(true);
      mat.exec();
 }
@@ -243,10 +252,33 @@ void MainWindow::on_btn_path_clicked()
 void MainWindow::on_pathButton_clicked()
 {
 
-    this->ui->renderArea->step_count+=1;
+
     this->ui->renderArea->flag[13] = true;
     this->ui->renderArea->Val=this->ui->LCvalue->value();
-    this->ui->renderArea->step_array[(this->ui->renderArea->step_count)-1].Val = this->ui->LCvalue->value();
+    if(this->ui->s22->isChecked()){
+        this->ui->renderArea->flag[18]=true;
+    }
+
+    if(!this->ui->editRadioButton->isChecked()){
+        this->ui->renderArea->step_count+=1;
+        this->ui->renderArea->step_array[(this->ui->renderArea->step_count)-1].Val = this->ui->LCvalue->value();
+        QTableWidgetItem *val= new QTableWidgetItem(QString::number(this->ui->LCvalue->value()));
+        this->ui->tableWidget->setItem(this->ui->renderArea->step_count-1,1,val);
+    }
+
+
+
+
+    this->ui->MinF->setStyleSheet("QDoubleSpinBox {background-color: green; }");
+    this->ui->MaxF->setStyleSheet("QDoubleSpinBox {background-color: magenta; }");
+    this->ui->frequencyLC->setStyleSheet("QDoubleSpinBox {background-color: red; }");
+
+    //temp. for testing purpose only
+    //QString test="";
+    //for(int i=0;i<this->ui->renderArea->step_count;i++)
+      //  test+=" "+QString::number(i)+"->"+QString::number(this->ui->renderArea->step_array[i].Val);
+        //this->ui->textBrowser->setText(test);
+
     this->ui->renderArea->w=2*M_PI*(this->ui->frequencyLC->value());
     this->ui->renderArea->wMax=2*M_PI*(this->ui->MaxF->value());
     this->ui->renderArea->wMin=2*M_PI*(this->ui->MinF->value());
@@ -263,34 +295,46 @@ void MainWindow::on_pathButton_clicked()
         this->ui->renderArea->setTopology(this->ui->renderArea->Series_Capacitance);
         this->ui->renderArea->step_array[(this->ui->renderArea->step_count)-1].topology = this->ui->renderArea->getTopology();
         this->ui->renderArea->repaint();
-        this->ui->A->setText(this->ui->renderArea->ABCD.val[0][0].display());
-        this->ui->B->setText(this->ui->renderArea->ABCD.val[1][0].display());
-        this->ui->C->setText(this->ui->renderArea->ABCD.val[0][1].display());
-        this->ui->D->setText(this->ui->renderArea->ABCD.val[1][1].display());
+        QTableWidgetItem *cseries=new QTableWidgetItem("C-Series");
+        this->ui->tableWidget->setItem(this->ui->renderArea->step_count-1,0,cseries);
+
     }
     else if(this->ui->cShuntRadioButton->isChecked()){
        this->ui->renderArea->setTopology(this->ui->renderArea->Shunt_Capacitance);
         this->ui->renderArea->step_array[(this->ui->renderArea->step_count)-1].topology = this->ui->renderArea->getTopology();
          this->ui->renderArea->repaint();
+        QTableWidgetItem *cshunt=new QTableWidgetItem("C-Shunt");
+        this->ui->tableWidget->setItem(this->ui->renderArea->step_count-1,0,cshunt);
 
     }
     else if(this->ui->lSeriesRadioButton->isChecked()){
        this->ui->renderArea->setTopology(this->ui->renderArea->Series_Inductance);
         this->ui->renderArea->step_array[(this->ui->renderArea->step_count)-1].topology = this->ui->renderArea->getTopology();
          this->ui->renderArea->repaint();
+        QTableWidgetItem *lseries=new QTableWidgetItem("L-Series");
+        this->ui->tableWidget->setItem(this->ui->renderArea->step_count-1,0,lseries);
     }
     else if(this->ui->lShuntRadioButton->isChecked()){
         this->ui->renderArea->setTopology(this->ui->renderArea->Shunt_Inductance);
         this->ui->renderArea->step_array[(this->ui->renderArea->step_count)-1].topology = this->ui->renderArea->getTopology();
          this->ui->renderArea->repaint();
+
+        QTableWidgetItem *lshunt=new QTableWidgetItem("L-Shunt");
+        this->ui->tableWidget->setItem(this->ui->renderArea->step_count-1,0,lshunt);
+
+    }
+    else if(this->ui->editRadioButton->isChecked()){
+        this->ui->renderArea->repaint();
     }
     else{
         QMessageBox::information(0,"Error!","Unselected Arguments");
     this->ui->renderArea->flag[13]=false;
     }
+
+    this->ui->renderArea->updateABCD();
     this->ui->A->setText(this->ui->renderArea->ABCD.val[0][0].display());
-    this->ui->B->setText(this->ui->renderArea->ABCD.val[1][0].display());
-    this->ui->C->setText(this->ui->renderArea->ABCD.val[0][1].display());
+    this->ui->B->setText(this->ui->renderArea->ABCD.val[0][1].display());
+    this->ui->C->setText(this->ui->renderArea->ABCD.val[1][0].display());
     this->ui->D->setText(this->ui->renderArea->ABCD.val[1][1].display());
 }
 
@@ -300,54 +344,42 @@ void MainWindow::on_pathStopButton_clicked()
 {
     this->ui->renderArea->flag[13] = false;
     this->ui->renderArea->flag[19] = true;
-    this->ui->renderArea->ofile.close();
-    QFile file("log.txt");
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text)){
-    QTextStream in(&file);
-    this->ui->textBrowser->setText(in.readAll());
-    }
-
+    this->ui->tableWidget->clearContents();
     this->ui->label_10->setText(QString::number(this->ui->renderArea->step_array[0].Val));
     this->ui->renderArea->repaint();
     this->ui->A->setText(this->ui->renderArea->ABCD.val[0][0].display());
-    this->ui->B->setText(this->ui->renderArea->ABCD.val[1][0].display());
-    this->ui->C->setText(this->ui->renderArea->ABCD.val[0][1].display());
+    this->ui->B->setText(this->ui->renderArea->ABCD.val[0][1].display());
+    this->ui->C->setText(this->ui->renderArea->ABCD.val[1][0].display());
     this->ui->D->setText(this->ui->renderArea->ABCD.val[1][1].display());
 
     this->ui->label_10->setText("Final Point: "+ QString::number(this->ui->renderArea->initial_point.x()) + " + " +
                                 QString::number(this->ui->renderArea->initial_point.y()) + "j");
 
-
-
-
-
-
     this->ui->renderArea->step_count = 0;
     this->ui->renderArea->initial_point = QPointF(1, 0);
-    this->ui->renderArea->flag[14] = false;
 
 }
 
 void MainWindow::on_cSeriesRadioButton_clicked()
 {
-    this->ui->LClabel->setText("Capacitance Value(nF):");
+    this->ui->LClabel->setText("Capacitance(nF):");
 }
 
 void MainWindow::on_cShuntRadioButton_clicked()
 {
-    this->ui->LClabel->setText("Capacitance Value(nF):");
+    this->ui->LClabel->setText("Capacitance(nF):");
 }
 
 
 void MainWindow::on_lSeriesRadioButton_clicked()
 {
-    this->ui->LClabel->setText("Inductance Value(nH):");
+    this->ui->LClabel->setText("Inductance(nH):");
 }
 
 
 void MainWindow::on_lShuntRadioButton_clicked()
 {
-    this->ui->LClabel->setText("Inductance Value(nH):");
+    this->ui->LClabel->setText("Inductance(nH):");
 }
 
 void MainWindow::on_label_10_linkActivated(const QString &link)
@@ -372,5 +404,25 @@ void MainWindow::on_label_9_linkActivated(const QString &link)
 
 void MainWindow::on_LClabel_linkActivated(const QString &link)
 {
+
+}
+
+void MainWindow::on_radioButton_2_clicked()
+{
+
+}
+
+void MainWindow::on_tableWidget_itemChanged(QTableWidgetItem *item)
+{
+    if(item->column()==1 && this->ui->editRadioButton->isChecked()){
+        this->ui->renderArea->step_array[item->row()].Val=item->text().toDouble();
+        this->ui->renderArea->updateABCD();
+        this->ui->A->setText(this->ui->renderArea->ABCD.val[0][0].display());
+        this->ui->B->setText(this->ui->renderArea->ABCD.val[0][1].display());
+        this->ui->C->setText(this->ui->renderArea->ABCD.val[1][0].display());
+        this->ui->D->setText(this->ui->renderArea->ABCD.val[1][1].display());
+    }
+    else
+        return;
 
 }
