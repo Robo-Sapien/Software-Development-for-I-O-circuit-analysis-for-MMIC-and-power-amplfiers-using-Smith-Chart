@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.8.0)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.7.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,14 +12,12 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'mainwindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.8.0. It"
+#error "This file was generated using the moc from 5.7.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-QT_WARNING_PUSH
-QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[46];
     char stringdata0[1093];
@@ -227,7 +225,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->on_btnImaginary_clicked(); break;
         case 2: _t->on_btnSuperimpose_clicked(); break;
         case 3: _t->on_doubleSpinBox_2_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
-        //case 4: _t->on_pushButton_clicked(); break;
+
         case 5: _t->on_pushButton_2_clicked(); break;
         case 6: _t->on_doubleSpinBox_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 7: _t->on_doubleSpinBox_3_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
@@ -247,7 +245,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 21: _t->on_ZinputY_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 22: _t->on_frequency2_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 23: _t->on_Inductance_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
-        //case 24: _t->on_doubleSpinBox_9_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+
         case 25: _t->on_Capacitance_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 26: _t->on_btn_path_clicked(); break;
         case 27: _t->on_pathButton_clicked(); break;
@@ -303,5 +301,4 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     }
     return _id;
 }
-QT_WARNING_POP
 QT_END_MOC_NAMESPACE
