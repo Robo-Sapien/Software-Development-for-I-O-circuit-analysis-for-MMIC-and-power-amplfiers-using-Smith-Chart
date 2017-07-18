@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'dialogmat.ui'
 **
-** Created by: Qt User Interface Compiler version 5.8.0
+** Created by: Qt User Interface Compiler version 5.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -74,12 +74,14 @@ public:
         z2real = new QDoubleSpinBox(dialogmat);
         z2real->setObjectName(QStringLiteral("z2real"));
         z2real->setGeometry(QRect(70, 80, 62, 22));
+        z2real->setDecimals(5);
         z2real->setMinimum(-10000);
         z2real->setMaximum(10000);
         z2real->setSingleStep(0.01);
         z3real = new QDoubleSpinBox(dialogmat);
         z3real->setObjectName(QStringLiteral("z3real"));
         z3real->setGeometry(QRect(70, 120, 62, 22));
+        z3real->setDecimals(5);
         z3real->setMinimum(-10000);
         z3real->setMaximum(10000);
         z3real->setSingleStep(0.01);
@@ -92,18 +94,21 @@ public:
         z3img = new QDoubleSpinBox(dialogmat);
         z3img->setObjectName(QStringLiteral("z3img"));
         z3img->setGeometry(QRect(170, 120, 62, 22));
+        z3img->setDecimals(5);
         z3img->setMinimum(-10000);
         z3img->setMaximum(10000);
         z3img->setSingleStep(0.01);
         z1real = new QDoubleSpinBox(dialogmat);
         z1real->setObjectName(QStringLiteral("z1real"));
         z1real->setGeometry(QRect(70, 40, 62, 22));
+        z1real->setDecimals(5);
         z1real->setMinimum(-10000);
         z1real->setMaximum(10000);
         z1real->setSingleStep(0.01);
         z1img = new QDoubleSpinBox(dialogmat);
         z1img->setObjectName(QStringLiteral("z1img"));
         z1img->setGeometry(QRect(170, 40, 62, 22));
+        z1img->setDecimals(5);
         z1img->setMinimum(-10000);
         z1img->setMaximum(10000);
         z1img->setSingleStep(0.01);
@@ -122,6 +127,7 @@ public:
         z2img = new QDoubleSpinBox(dialogmat);
         z2img->setObjectName(QStringLiteral("z2img"));
         z2img->setGeometry(QRect(170, 80, 62, 22));
+        z2img->setDecimals(5);
         z2img->setMinimum(-10000);
         z2img->setMaximum(10000);
         z2img->setSingleStep(0.01);

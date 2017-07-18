@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>1024</width>
-    <height>700</height>
+    <height>710</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Circuit Analyser-SC</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="RenderArea" name="renderArea" native="true">
@@ -30,21 +30,21 @@
       <x>730</x>
       <y>10</y>
       <width>291</width>
-      <height>671</height>
+      <height>681</height>
      </rect>
     </property>
     <property name="currentIndex">
      <number>1</number>
     </property>
-    <widget class="QWidget" name="tab">
+    <widget class="QWidget" name="tabWidgetPage1_2">
      <attribute name="title">
-      <string>Tab 1</string>
+      <string/>
      </attribute>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>11</x>
-        <y>51</y>
+        <x>10</x>
+        <y>50</y>
         <width>261</width>
         <height>102</height>
        </rect>
@@ -143,10 +143,10 @@
      <widget class="QLabel" name="label_7">
       <property name="geometry">
        <rect>
-        <x>18</x>
-        <y>159</y>
+        <x>20</x>
+        <y>160</y>
         <width>251</width>
-        <height>44</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="text">
@@ -159,8 +159,8 @@
      <widget class="QPushButton" name="pushButton_4">
       <property name="geometry">
        <rect>
-        <x>31</x>
-        <y>297</y>
+        <x>30</x>
+        <y>310</y>
         <width>221</width>
         <height>23</height>
        </rect>
@@ -169,11 +169,11 @@
        <string>OK</string>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>11</x>
-        <y>209</y>
+        <x>10</x>
+        <y>210</y>
         <width>261</width>
         <height>82</height>
        </rect>
@@ -277,7 +277,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>330</y>
+        <y>341</y>
         <width>261</width>
         <height>131</height>
        </rect>
@@ -291,7 +291,7 @@
          <x>20</x>
          <y>20</y>
          <width>221</width>
-         <height>101</height>
+         <height>109</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -306,6 +306,9 @@
           </item>
           <item>
            <widget class="QDoubleSpinBox" name="ZinputY">
+            <property name="minimum">
+             <double>-999.000000000000000</double>
+            </property>
             <property name="maximum">
              <double>9999.000000000000000</double>
             </property>
@@ -365,10 +368,10 @@
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>11</x>
+        <x>10</x>
         <y>0</y>
         <width>261</width>
-        <height>45</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="text">
@@ -382,7 +385,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>600</y>
+        <y>610</y>
         <width>261</width>
         <height>23</height>
        </rect>
@@ -395,7 +398,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>469</y>
+        <y>480</y>
         <width>261</width>
         <height>121</height>
        </rect>
@@ -409,7 +412,7 @@
          <x>20</x>
          <y>20</y>
          <width>221</width>
-         <height>91</height>
+         <height>94</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -499,14 +502,11 @@
         </item>
        </layout>
       </widget>
-      <zorder>D</zorder>
-      <zorder>pushButton_3</zorder>
-      <zorder>verticalLayoutWidget</zorder>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_2">
+    <widget class="QWidget" name="tabWidgetPage2_2">
      <attribute name="title">
-      <string>Tab 2</string>
+      <string/>
      </attribute>
      <widget class="QGroupBox" name="groupBox_3">
       <property name="geometry">
@@ -526,7 +526,7 @@
          <x>10</x>
          <y>20</y>
          <width>241</width>
-         <height>105</height>
+         <height>106</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_28">
@@ -560,7 +560,7 @@
           <item>
            <widget class="QDoubleSpinBox" name="S2Mag">
             <property name="decimals">
-             <number>4</number>
+             <number>6</number>
             </property>
             <property name="singleStep">
              <double>0.001000000000000</double>
@@ -577,7 +577,7 @@
           <item>
            <widget class="QDoubleSpinBox" name="S2angle">
             <property name="decimals">
-             <number>4</number>
+             <number>6</number>
             </property>
             <property name="minimum">
              <double>-360.000000000000000</double>
@@ -604,7 +604,7 @@
           <item>
            <widget class="QDoubleSpinBox" name="S3Mag">
             <property name="decimals">
-             <number>4</number>
+             <number>6</number>
             </property>
             <property name="singleStep">
              <double>0.001000000000000</double>
@@ -621,7 +621,7 @@
           <item>
            <widget class="QDoubleSpinBox" name="S3angle">
             <property name="decimals">
-             <number>4</number>
+             <number>6</number>
             </property>
             <property name="minimum">
              <double>-360.000000000000000</double>
@@ -648,7 +648,7 @@
           <item>
            <widget class="QDoubleSpinBox" name="S1Mag">
             <property name="decimals">
-             <number>4</number>
+             <number>6</number>
             </property>
             <property name="singleStep">
              <double>0.001000000000000</double>
@@ -665,7 +665,7 @@
           <item>
            <widget class="QDoubleSpinBox" name="S1angle">
             <property name="decimals">
-             <number>4</number>
+             <number>6</number>
             </property>
             <property name="minimum">
              <double>-360.000000000000000</double>
@@ -688,7 +688,7 @@
        <rect>
         <x>10</x>
         <y>150</y>
-        <width>263</width>
+        <width>261</width>
         <height>133</height>
        </rect>
       </property>
@@ -705,7 +705,7 @@
          <item>
           <widget class="QDoubleSpinBox" name="MaxF">
            <property name="decimals">
-            <number>4</number>
+            <number>6</number>
            </property>
            <property name="singleStep">
             <double>1.000000000000000</double>
@@ -722,7 +722,7 @@
          <item>
           <widget class="QDoubleSpinBox" name="frequencyLC">
            <property name="decimals">
-            <number>4</number>
+            <number>6</number>
            </property>
           </widget>
          </item>
@@ -736,7 +736,7 @@
          <item>
           <widget class="QDoubleSpinBox" name="MinF">
            <property name="decimals">
-            <number>4</number>
+            <number>6</number>
            </property>
            <property name="singleStep">
             <double>1.000000000000000</double>
@@ -810,7 +810,7 @@
          <item>
           <widget class="QDoubleSpinBox" name="LCvalue">
            <property name="decimals">
-            <number>4</number>
+            <number>6</number>
            </property>
            <property name="maximum">
             <double>999999.000000000000000</double>
@@ -846,9 +846,9 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>570</y>
-        <width>231</width>
-        <height>16</height>
+        <y>510</y>
+        <width>261</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="text">
@@ -861,7 +861,7 @@
         <x>10</x>
         <y>290</y>
         <width>261</width>
-        <height>201</height>
+        <height>141</height>
        </rect>
       </property>
       <row>
@@ -979,7 +979,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>500</y>
+        <y>440</y>
         <width>261</width>
         <height>61</height>
        </rect>
@@ -1013,19 +1013,6 @@
         <string>     B-total</string>
        </property>
       </widget>
-      <widget class="QLabel" name="C">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>40</y>
-         <width>131</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>         C-total</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="D">
        <property name="geometry">
         <rect>
@@ -1039,32 +1026,149 @@
         <string>     D-total</string>
        </property>
       </widget>
+      <widget class="QLabel" name="C">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>40</y>
+         <width>131</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>         C-total</string>
+       </property>
+      </widget>
      </widget>
-     <widget class="QLabel" name="label_16">
+     <widget class="QWidget" name="verticalLayoutWidget_3">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>590</y>
-        <width>47</width>
-        <height>13</height>
+        <y>540</y>
+        <width>261</width>
+        <height>52</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Zin :</string>
-      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_15">
+         <item>
+          <widget class="QLabel" name="label_18">
+           <property name="text">
+            <string>Rl</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="rlreal">
+           <property name="decimals">
+            <number>5</number>
+           </property>
+           <property name="value">
+            <double>50.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_19">
+           <property name="text">
+            <string> +         j</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="rlimg">
+           <property name="decimals">
+            <number>5</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_14">
+         <item>
+          <widget class="QLabel" name="label_17">
+           <property name="text">
+            <string>Rs</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="rsreal">
+           <property name="decimals">
+            <number>5</number>
+           </property>
+           <property name="value">
+            <double>50.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_20">
+           <property name="text">
+            <string> +         j</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="rsimg">
+           <property name="decimals">
+            <number>5</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
-     <widget class="QLabel" name="label_26">
+     <widget class="QWidget" name="verticalLayoutWidget_4">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>610</y>
-        <width>47</width>
-        <height>13</height>
+        <y>600</y>
+        <width>261</width>
+        <height>41</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Zout :</string>
-      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_16">
+         <item>
+          <widget class="QLabel" name="label_16">
+           <property name="text">
+            <string>Zin :</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="zinlabel">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_17">
+         <item>
+          <widget class="QLabel" name="label_26">
+           <property name="text">
+            <string>Zout :</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="zoutlabel">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>

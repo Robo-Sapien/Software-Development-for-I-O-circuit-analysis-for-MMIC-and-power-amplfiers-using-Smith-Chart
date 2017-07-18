@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.8.0
+** Created by: Qt User Interface Compiler version 5.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -37,8 +37,8 @@ public:
     QWidget *centralWidget;
     RenderArea *renderArea;
     QTabWidget *tabWidget;
-    QWidget *tab;
-    QWidget *widget;
+    QWidget *tabWidgetPage1_2;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
     QVBoxLayout *verticalLayout_2;
     QDoubleSpinBox *doubleSpinBox;
@@ -52,7 +52,7 @@ public:
     QDoubleSpinBox *doubleSpinBox_8;
     QLabel *label_7;
     QPushButton *pushButton_4;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout_7;
     QVBoxLayout *verticalLayout_5;
     QHBoxLayout *horizontalLayout_3;
@@ -101,7 +101,7 @@ public:
     QHBoxLayout *horizontalLayout_39;
     QLabel *label_68;
     QDoubleSpinBox *Capacitance;
-    QWidget *tab_2;
+    QWidget *tabWidgetPage2_2;
     QGroupBox *groupBox_3;
     QWidget *verticalLayoutWidget_7;
     QVBoxLayout *verticalLayout_28;
@@ -151,10 +151,28 @@ public:
     QGroupBox *groupBox_4;
     QLabel *A;
     QLabel *B;
-    QLabel *C;
     QLabel *D;
+    QLabel *C;
+    QWidget *verticalLayoutWidget_3;
+    QVBoxLayout *verticalLayout_6;
+    QHBoxLayout *horizontalLayout_15;
+    QLabel *label_18;
+    QDoubleSpinBox *rlreal;
+    QLabel *label_19;
+    QDoubleSpinBox *rlimg;
+    QHBoxLayout *horizontalLayout_14;
+    QLabel *label_17;
+    QDoubleSpinBox *rsreal;
+    QLabel *label_20;
+    QDoubleSpinBox *rsimg;
+    QWidget *verticalLayoutWidget_4;
+    QVBoxLayout *verticalLayout_7;
+    QHBoxLayout *horizontalLayout_16;
     QLabel *label_16;
+    QLabel *zinlabel;
+    QHBoxLayout *horizontalLayout_17;
     QLabel *label_26;
+    QLabel *zoutlabel;
     QWidget *horizontalLayoutWidget_6;
     QHBoxLayout *horizontalLayout_13;
     QPushButton *btnReal;
@@ -167,7 +185,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1024, 700);
+        MainWindow->resize(1024, 710);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         renderArea = new RenderArea(centralWidget);
@@ -175,13 +193,13 @@ public:
         renderArea->setGeometry(QRect(9, 9, 711, 631));
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        tabWidget->setGeometry(QRect(730, 10, 291, 671));
-        tab = new QWidget();
-        tab->setObjectName(QStringLiteral("tab"));
-        widget = new QWidget(tab);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(11, 51, 261, 102));
-        horizontalLayout = new QHBoxLayout(widget);
+        tabWidget->setGeometry(QRect(730, 10, 291, 681));
+        tabWidgetPage1_2 = new QWidget();
+        tabWidgetPage1_2->setObjectName(QStringLiteral("tabWidgetPage1_2"));
+        layoutWidget = new QWidget(tabWidgetPage1_2);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 50, 261, 102));
+        horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
@@ -189,28 +207,28 @@ public:
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        doubleSpinBox = new QDoubleSpinBox(widget);
+        doubleSpinBox = new QDoubleSpinBox(layoutWidget);
         doubleSpinBox->setObjectName(QStringLiteral("doubleSpinBox"));
         doubleSpinBox->setDecimals(5);
         doubleSpinBox->setMinimum(-99);
 
         verticalLayout_2->addWidget(doubleSpinBox);
 
-        doubleSpinBox_3 = new QDoubleSpinBox(widget);
+        doubleSpinBox_3 = new QDoubleSpinBox(layoutWidget);
         doubleSpinBox_3->setObjectName(QStringLiteral("doubleSpinBox_3"));
         doubleSpinBox_3->setDecimals(5);
         doubleSpinBox_3->setMinimum(-99);
 
         verticalLayout_2->addWidget(doubleSpinBox_3);
 
-        doubleSpinBox_5 = new QDoubleSpinBox(widget);
+        doubleSpinBox_5 = new QDoubleSpinBox(layoutWidget);
         doubleSpinBox_5->setObjectName(QStringLiteral("doubleSpinBox_5"));
         doubleSpinBox_5->setDecimals(5);
         doubleSpinBox_5->setMinimum(-99);
 
         verticalLayout_2->addWidget(doubleSpinBox_5);
 
-        doubleSpinBox_7 = new QDoubleSpinBox(widget);
+        doubleSpinBox_7 = new QDoubleSpinBox(layoutWidget);
         doubleSpinBox_7->setObjectName(QStringLiteral("doubleSpinBox_7"));
         doubleSpinBox_7->setDecimals(5);
         doubleSpinBox_7->setMinimum(-99);
@@ -223,28 +241,28 @@ public:
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        doubleSpinBox_2 = new QDoubleSpinBox(widget);
+        doubleSpinBox_2 = new QDoubleSpinBox(layoutWidget);
         doubleSpinBox_2->setObjectName(QStringLiteral("doubleSpinBox_2"));
         doubleSpinBox_2->setDecimals(5);
         doubleSpinBox_2->setMinimum(-99);
 
         verticalLayout_3->addWidget(doubleSpinBox_2);
 
-        doubleSpinBox_4 = new QDoubleSpinBox(widget);
+        doubleSpinBox_4 = new QDoubleSpinBox(layoutWidget);
         doubleSpinBox_4->setObjectName(QStringLiteral("doubleSpinBox_4"));
         doubleSpinBox_4->setDecimals(5);
         doubleSpinBox_4->setMinimum(-99);
 
         verticalLayout_3->addWidget(doubleSpinBox_4);
 
-        doubleSpinBox_6 = new QDoubleSpinBox(widget);
+        doubleSpinBox_6 = new QDoubleSpinBox(layoutWidget);
         doubleSpinBox_6->setObjectName(QStringLiteral("doubleSpinBox_6"));
         doubleSpinBox_6->setDecimals(5);
         doubleSpinBox_6->setMinimum(-99);
 
         verticalLayout_3->addWidget(doubleSpinBox_6);
 
-        doubleSpinBox_8 = new QDoubleSpinBox(widget);
+        doubleSpinBox_8 = new QDoubleSpinBox(layoutWidget);
         doubleSpinBox_8->setObjectName(QStringLiteral("doubleSpinBox_8"));
         doubleSpinBox_8->setDecimals(5);
         doubleSpinBox_8->setMinimum(-99);
@@ -254,17 +272,17 @@ public:
 
         horizontalLayout->addLayout(verticalLayout_3);
 
-        label_7 = new QLabel(tab);
+        label_7 = new QLabel(tabWidgetPage1_2);
         label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setGeometry(QRect(18, 159, 251, 44));
+        label_7->setGeometry(QRect(20, 160, 251, 41));
         label_7->setAlignment(Qt::AlignCenter);
-        pushButton_4 = new QPushButton(tab);
+        pushButton_4 = new QPushButton(tabWidgetPage1_2);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        pushButton_4->setGeometry(QRect(31, 297, 221, 23));
-        widget1 = new QWidget(tab);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(11, 209, 261, 82));
-        horizontalLayout_7 = new QHBoxLayout(widget1);
+        pushButton_4->setGeometry(QRect(30, 310, 221, 23));
+        layoutWidget1 = new QWidget(tabWidgetPage1_2);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(10, 210, 261, 82));
+        horizontalLayout_7 = new QHBoxLayout(layoutWidget1);
         horizontalLayout_7->setSpacing(6);
         horizontalLayout_7->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
@@ -275,12 +293,12 @@ public:
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(6);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        label_2 = new QLabel(widget1);
+        label_2 = new QLabel(layoutWidget1);
         label_2->setObjectName(QStringLiteral("label_2"));
 
         horizontalLayout_3->addWidget(label_2);
 
-        frequency = new QDoubleSpinBox(widget1);
+        frequency = new QDoubleSpinBox(layoutWidget1);
         frequency->setObjectName(QStringLiteral("frequency"));
 
         horizontalLayout_3->addWidget(frequency);
@@ -291,12 +309,12 @@ public:
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        label_4 = new QLabel(widget1);
+        label_4 = new QLabel(layoutWidget1);
         label_4->setObjectName(QStringLiteral("label_4"));
 
         horizontalLayout_4->addWidget(label_4);
 
-        rp = new QDoubleSpinBox(widget1);
+        rp = new QDoubleSpinBox(layoutWidget1);
         rp->setObjectName(QStringLiteral("rp"));
 
         horizontalLayout_4->addWidget(rp);
@@ -307,12 +325,12 @@ public:
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        label_3 = new QLabel(widget1);
+        label_3 = new QLabel(layoutWidget1);
         label_3->setObjectName(QStringLiteral("label_3"));
 
         horizontalLayout_2->addWidget(label_3);
 
-        rs = new QDoubleSpinBox(widget1);
+        rs = new QDoubleSpinBox(layoutWidget1);
         rs->setObjectName(QStringLiteral("rs"));
 
         horizontalLayout_2->addWidget(rs);
@@ -329,13 +347,13 @@ public:
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setSpacing(6);
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        label_5 = new QLabel(widget1);
+        label_5 = new QLabel(layoutWidget1);
         label_5->setObjectName(QStringLiteral("label_5"));
         label_5->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_5->addWidget(label_5);
 
-        X2L = new QDoubleSpinBox(widget1);
+        X2L = new QDoubleSpinBox(layoutWidget1);
         X2L->setObjectName(QStringLiteral("X2L"));
         X2L->setMinimum(-99);
 
@@ -347,13 +365,13 @@ public:
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setSpacing(6);
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
-        label_6 = new QLabel(widget1);
+        label_6 = new QLabel(layoutWidget1);
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_6->addWidget(label_6);
 
-        X1L = new QDoubleSpinBox(widget1);
+        X1L = new QDoubleSpinBox(layoutWidget1);
         X1L->setObjectName(QStringLiteral("X1L"));
         X1L->setMinimum(-99);
 
@@ -365,12 +383,12 @@ public:
 
         horizontalLayout_7->addLayout(verticalLayout_4);
 
-        groupBox = new QGroupBox(tab);
+        groupBox = new QGroupBox(tabWidgetPage1_2);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setGeometry(QRect(10, 330, 261, 131));
+        groupBox->setGeometry(QRect(10, 341, 261, 131));
         verticalLayoutWidget_2 = new QWidget(groupBox);
         verticalLayoutWidget_2->setObjectName(QStringLiteral("verticalLayoutWidget_2"));
-        verticalLayoutWidget_2->setGeometry(QRect(20, 20, 221, 101));
+        verticalLayoutWidget_2->setGeometry(QRect(20, 20, 221, 109));
         verticalLayout_9 = new QVBoxLayout(verticalLayoutWidget_2);
         verticalLayout_9->setSpacing(6);
         verticalLayout_9->setContentsMargins(11, 11, 11, 11);
@@ -386,6 +404,7 @@ public:
 
         ZinputY = new QDoubleSpinBox(verticalLayoutWidget_2);
         ZinputY->setObjectName(QStringLiteral("ZinputY"));
+        ZinputY->setMinimum(-999);
         ZinputY->setMaximum(9999);
 
         horizontalLayout_10->addWidget(ZinputY);
@@ -433,19 +452,19 @@ public:
 
         verticalLayout_9->addWidget(btn_path);
 
-        label = new QLabel(tab);
+        label = new QLabel(tabWidgetPage1_2);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(11, 0, 261, 45));
+        label->setGeometry(QRect(10, 0, 261, 41));
         label->setAlignment(Qt::AlignCenter);
-        pushButton_3 = new QPushButton(tab);
+        pushButton_3 = new QPushButton(tabWidgetPage1_2);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setGeometry(QRect(10, 600, 261, 23));
-        groupBox_2 = new QGroupBox(tab);
+        pushButton_3->setGeometry(QRect(10, 610, 261, 23));
+        groupBox_2 = new QGroupBox(tabWidgetPage1_2);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        groupBox_2->setGeometry(QRect(10, 469, 261, 121));
+        groupBox_2->setGeometry(QRect(10, 480, 261, 121));
         verticalLayoutWidget = new QWidget(groupBox_2);
         verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(20, 20, 221, 91));
+        verticalLayoutWidget->setGeometry(QRect(20, 20, 221, 94));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -521,17 +540,15 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_39);
 
-        pushButton_3->raise();
-        verticalLayoutWidget->raise();
-        tabWidget->addTab(tab, QString());
-        tab_2 = new QWidget();
-        tab_2->setObjectName(QStringLiteral("tab_2"));
-        groupBox_3 = new QGroupBox(tab_2);
+        tabWidget->addTab(tabWidgetPage1_2, QString());
+        tabWidgetPage2_2 = new QWidget();
+        tabWidgetPage2_2->setObjectName(QStringLiteral("tabWidgetPage2_2"));
+        groupBox_3 = new QGroupBox(tabWidgetPage2_2);
         groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
         groupBox_3->setGeometry(QRect(10, 10, 261, 131));
         verticalLayoutWidget_7 = new QWidget(groupBox_3);
         verticalLayoutWidget_7->setObjectName(QStringLiteral("verticalLayoutWidget_7"));
-        verticalLayoutWidget_7->setGeometry(QRect(10, 20, 241, 105));
+        verticalLayoutWidget_7->setGeometry(QRect(10, 20, 241, 106));
         verticalLayout_28 = new QVBoxLayout(verticalLayoutWidget_7);
         verticalLayout_28->setSpacing(6);
         verticalLayout_28->setContentsMargins(11, 11, 11, 11);
@@ -563,7 +580,7 @@ public:
 
         S2Mag = new QDoubleSpinBox(verticalLayoutWidget_7);
         S2Mag->setObjectName(QStringLiteral("S2Mag"));
-        S2Mag->setDecimals(4);
+        S2Mag->setDecimals(6);
         S2Mag->setSingleStep(0.001);
 
         horizontalLayout_43->addWidget(S2Mag);
@@ -575,7 +592,7 @@ public:
 
         S2angle = new QDoubleSpinBox(verticalLayoutWidget_7);
         S2angle->setObjectName(QStringLiteral("S2angle"));
-        S2angle->setDecimals(4);
+        S2angle->setDecimals(6);
         S2angle->setMinimum(-360);
         S2angle->setMaximum(360);
         S2angle->setSingleStep(0.001);
@@ -595,7 +612,7 @@ public:
 
         S3Mag = new QDoubleSpinBox(verticalLayoutWidget_7);
         S3Mag->setObjectName(QStringLiteral("S3Mag"));
-        S3Mag->setDecimals(4);
+        S3Mag->setDecimals(6);
         S3Mag->setSingleStep(0.001);
 
         horizontalLayout_44->addWidget(S3Mag);
@@ -607,7 +624,7 @@ public:
 
         S3angle = new QDoubleSpinBox(verticalLayoutWidget_7);
         S3angle->setObjectName(QStringLiteral("S3angle"));
-        S3angle->setDecimals(4);
+        S3angle->setDecimals(6);
         S3angle->setMinimum(-360);
         S3angle->setMaximum(360);
         S3angle->setSingleStep(0.001);
@@ -627,7 +644,7 @@ public:
 
         S1Mag = new QDoubleSpinBox(verticalLayoutWidget_7);
         S1Mag->setObjectName(QStringLiteral("S1Mag"));
-        S1Mag->setDecimals(4);
+        S1Mag->setDecimals(6);
         S1Mag->setSingleStep(0.001);
 
         horizontalLayout_42->addWidget(S1Mag);
@@ -639,7 +656,7 @@ public:
 
         S1angle = new QDoubleSpinBox(verticalLayoutWidget_7);
         S1angle->setObjectName(QStringLiteral("S1angle"));
-        S1angle->setDecimals(4);
+        S1angle->setDecimals(6);
         S1angle->setMinimum(-360);
         S1angle->setMaximum(360);
         S1angle->setSingleStep(0.001);
@@ -649,9 +666,9 @@ public:
 
         verticalLayout_28->addLayout(horizontalLayout_42);
 
-        horizontalLayoutWidget = new QWidget(tab_2);
+        horizontalLayoutWidget = new QWidget(tabWidgetPage2_2);
         horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(10, 150, 263, 133));
+        horizontalLayoutWidget->setGeometry(QRect(10, 150, 261, 133));
         horizontalLayout_8 = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout_8->setSpacing(6);
         horizontalLayout_8->setContentsMargins(11, 11, 11, 11);
@@ -667,7 +684,7 @@ public:
 
         MaxF = new QDoubleSpinBox(horizontalLayoutWidget);
         MaxF->setObjectName(QStringLiteral("MaxF"));
-        MaxF->setDecimals(4);
+        MaxF->setDecimals(6);
         MaxF->setSingleStep(1);
 
         verticalLayout_10->addWidget(MaxF);
@@ -679,7 +696,7 @@ public:
 
         frequencyLC = new QDoubleSpinBox(horizontalLayoutWidget);
         frequencyLC->setObjectName(QStringLiteral("frequencyLC"));
-        frequencyLC->setDecimals(4);
+        frequencyLC->setDecimals(6);
 
         verticalLayout_10->addWidget(frequencyLC);
 
@@ -690,7 +707,7 @@ public:
 
         MinF = new QDoubleSpinBox(horizontalLayoutWidget);
         MinF->setObjectName(QStringLiteral("MinF"));
-        MinF->setDecimals(4);
+        MinF->setDecimals(6);
         MinF->setSingleStep(1);
 
         verticalLayout_10->addWidget(MinF);
@@ -753,7 +770,7 @@ public:
 
         LCvalue = new QDoubleSpinBox(horizontalLayoutWidget);
         LCvalue->setObjectName(QStringLiteral("LCvalue"));
-        LCvalue->setDecimals(4);
+        LCvalue->setDecimals(6);
         LCvalue->setMaximum(999999);
 
         verticalLayout_11->addWidget(LCvalue);
@@ -778,10 +795,10 @@ public:
 
         horizontalLayout_8->addLayout(verticalLayout_11);
 
-        label_10 = new QLabel(tab_2);
+        label_10 = new QLabel(tabWidgetPage2_2);
         label_10->setObjectName(QStringLiteral("label_10"));
-        label_10->setGeometry(QRect(10, 570, 231, 16));
-        tableWidget = new QTableWidget(tab_2);
+        label_10->setGeometry(QRect(10, 510, 261, 20));
+        tableWidget = new QTableWidget(tabWidgetPage2_2);
         if (tableWidget->columnCount() < 2)
             tableWidget->setColumnCount(2);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
@@ -831,29 +848,129 @@ public:
         QTableWidgetItem *__qtablewidgetitem21 = new QTableWidgetItem();
         tableWidget->setVerticalHeaderItem(19, __qtablewidgetitem21);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(10, 290, 261, 201));
-        groupBox_4 = new QGroupBox(tab_2);
+        tableWidget->setGeometry(QRect(10, 290, 261, 141));
+        groupBox_4 = new QGroupBox(tabWidgetPage2_2);
         groupBox_4->setObjectName(QStringLiteral("groupBox_4"));
-        groupBox_4->setGeometry(QRect(10, 500, 261, 61));
+        groupBox_4->setGeometry(QRect(10, 440, 261, 61));
         A = new QLabel(groupBox_4);
         A->setObjectName(QStringLiteral("A"));
         A->setGeometry(QRect(0, 20, 131, 16));
         B = new QLabel(groupBox_4);
         B->setObjectName(QStringLiteral("B"));
         B->setGeometry(QRect(130, 20, 131, 16));
-        C = new QLabel(groupBox_4);
-        C->setObjectName(QStringLiteral("C"));
-        C->setGeometry(QRect(0, 40, 131, 16));
         D = new QLabel(groupBox_4);
         D->setObjectName(QStringLiteral("D"));
         D->setGeometry(QRect(130, 40, 131, 16));
-        label_16 = new QLabel(tab_2);
+        C = new QLabel(groupBox_4);
+        C->setObjectName(QStringLiteral("C"));
+        C->setGeometry(QRect(0, 40, 131, 16));
+        verticalLayoutWidget_3 = new QWidget(tabWidgetPage2_2);
+        verticalLayoutWidget_3->setObjectName(QStringLiteral("verticalLayoutWidget_3"));
+        verticalLayoutWidget_3->setGeometry(QRect(10, 540, 261, 52));
+        verticalLayout_6 = new QVBoxLayout(verticalLayoutWidget_3);
+        verticalLayout_6->setSpacing(6);
+        verticalLayout_6->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
+        verticalLayout_6->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_15 = new QHBoxLayout();
+        horizontalLayout_15->setSpacing(6);
+        horizontalLayout_15->setObjectName(QStringLiteral("horizontalLayout_15"));
+        label_18 = new QLabel(verticalLayoutWidget_3);
+        label_18->setObjectName(QStringLiteral("label_18"));
+
+        horizontalLayout_15->addWidget(label_18);
+
+        rlreal = new QDoubleSpinBox(verticalLayoutWidget_3);
+        rlreal->setObjectName(QStringLiteral("rlreal"));
+        rlreal->setDecimals(5);
+        rlreal->setValue(50);
+
+        horizontalLayout_15->addWidget(rlreal);
+
+        label_19 = new QLabel(verticalLayoutWidget_3);
+        label_19->setObjectName(QStringLiteral("label_19"));
+
+        horizontalLayout_15->addWidget(label_19);
+
+        rlimg = new QDoubleSpinBox(verticalLayoutWidget_3);
+        rlimg->setObjectName(QStringLiteral("rlimg"));
+        rlimg->setDecimals(5);
+
+        horizontalLayout_15->addWidget(rlimg);
+
+
+        verticalLayout_6->addLayout(horizontalLayout_15);
+
+        horizontalLayout_14 = new QHBoxLayout();
+        horizontalLayout_14->setSpacing(6);
+        horizontalLayout_14->setObjectName(QStringLiteral("horizontalLayout_14"));
+        label_17 = new QLabel(verticalLayoutWidget_3);
+        label_17->setObjectName(QStringLiteral("label_17"));
+
+        horizontalLayout_14->addWidget(label_17);
+
+        rsreal = new QDoubleSpinBox(verticalLayoutWidget_3);
+        rsreal->setObjectName(QStringLiteral("rsreal"));
+        rsreal->setDecimals(5);
+        rsreal->setValue(50);
+
+        horizontalLayout_14->addWidget(rsreal);
+
+        label_20 = new QLabel(verticalLayoutWidget_3);
+        label_20->setObjectName(QStringLiteral("label_20"));
+
+        horizontalLayout_14->addWidget(label_20);
+
+        rsimg = new QDoubleSpinBox(verticalLayoutWidget_3);
+        rsimg->setObjectName(QStringLiteral("rsimg"));
+        rsimg->setDecimals(5);
+
+        horizontalLayout_14->addWidget(rsimg);
+
+
+        verticalLayout_6->addLayout(horizontalLayout_14);
+
+        verticalLayoutWidget_4 = new QWidget(tabWidgetPage2_2);
+        verticalLayoutWidget_4->setObjectName(QStringLiteral("verticalLayoutWidget_4"));
+        verticalLayoutWidget_4->setGeometry(QRect(10, 600, 261, 41));
+        verticalLayout_7 = new QVBoxLayout(verticalLayoutWidget_4);
+        verticalLayout_7->setSpacing(6);
+        verticalLayout_7->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
+        verticalLayout_7->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_16 = new QHBoxLayout();
+        horizontalLayout_16->setSpacing(6);
+        horizontalLayout_16->setObjectName(QStringLiteral("horizontalLayout_16"));
+        label_16 = new QLabel(verticalLayoutWidget_4);
         label_16->setObjectName(QStringLiteral("label_16"));
-        label_16->setGeometry(QRect(10, 590, 47, 13));
-        label_26 = new QLabel(tab_2);
+
+        horizontalLayout_16->addWidget(label_16);
+
+        zinlabel = new QLabel(verticalLayoutWidget_4);
+        zinlabel->setObjectName(QStringLiteral("zinlabel"));
+
+        horizontalLayout_16->addWidget(zinlabel);
+
+
+        verticalLayout_7->addLayout(horizontalLayout_16);
+
+        horizontalLayout_17 = new QHBoxLayout();
+        horizontalLayout_17->setSpacing(6);
+        horizontalLayout_17->setObjectName(QStringLiteral("horizontalLayout_17"));
+        label_26 = new QLabel(verticalLayoutWidget_4);
         label_26->setObjectName(QStringLiteral("label_26"));
-        label_26->setGeometry(QRect(10, 610, 47, 13));
-        tabWidget->addTab(tab_2, QString());
+
+        horizontalLayout_17->addWidget(label_26);
+
+        zoutlabel = new QLabel(verticalLayoutWidget_4);
+        zoutlabel->setObjectName(QStringLiteral("zoutlabel"));
+
+        horizontalLayout_17->addWidget(zoutlabel);
+
+
+        verticalLayout_7->addLayout(horizontalLayout_17);
+
+        tabWidget->addTab(tabWidgetPage2_2, QString());
         horizontalLayoutWidget_6 = new QWidget(centralWidget);
         horizontalLayoutWidget_6->setObjectName(QStringLiteral("horizontalLayoutWidget_6"));
         horizontalLayoutWidget_6->setGeometry(QRect(10, 650, 711, 25));
@@ -897,7 +1014,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Circuit Analyser-SC", Q_NULLPTR));
         label_7->setText(QApplication::translate("MainWindow", "Impedence Matching Tuner", Q_NULLPTR));
         pushButton_4->setText(QApplication::translate("MainWindow", "OK", Q_NULLPTR));
         label_2->setText(QApplication::translate("MainWindow", "Frequency", Q_NULLPTR));
@@ -919,7 +1036,7 @@ public:
         Cvalue->setText(QString());
         label_69->setText(QApplication::translate("MainWindow", "L", Q_NULLPTR));
         label_68->setText(QApplication::translate("MainWindow", "C", Q_NULLPTR));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "Tab 1", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tabWidgetPage1_2), QString());
         groupBox_3->setTitle(QApplication::translate("MainWindow", "S Parameters", Q_NULLPTR));
         s11->setText(QApplication::translate("MainWindow", "S11", Q_NULLPTR));
         s22->setText(QApplication::translate("MainWindow", "S22", Q_NULLPTR));
@@ -988,11 +1105,17 @@ public:
         groupBox_4->setTitle(QApplication::translate("MainWindow", "ABCD Matrix", Q_NULLPTR));
         A->setText(QApplication::translate("MainWindow", "         A-total", Q_NULLPTR));
         B->setText(QApplication::translate("MainWindow", "     B-total", Q_NULLPTR));
-        C->setText(QApplication::translate("MainWindow", "         C-total", Q_NULLPTR));
         D->setText(QApplication::translate("MainWindow", "     D-total", Q_NULLPTR));
+        C->setText(QApplication::translate("MainWindow", "         C-total", Q_NULLPTR));
+        label_18->setText(QApplication::translate("MainWindow", "Rl", Q_NULLPTR));
+        label_19->setText(QApplication::translate("MainWindow", " +         j", Q_NULLPTR));
+        label_17->setText(QApplication::translate("MainWindow", "Rs", Q_NULLPTR));
+        label_20->setText(QApplication::translate("MainWindow", " +         j", Q_NULLPTR));
         label_16->setText(QApplication::translate("MainWindow", "Zin :", Q_NULLPTR));
+        zinlabel->setText(QString());
         label_26->setText(QApplication::translate("MainWindow", "Zout :", Q_NULLPTR));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Tab 2", Q_NULLPTR));
+        zoutlabel->setText(QString());
+        tabWidget->setTabText(tabWidget->indexOf(tabWidgetPage2_2), QString());
         btnReal->setText(QApplication::translate("MainWindow", "Impedance", Q_NULLPTR));
         btnImaginary->setText(QApplication::translate("MainWindow", "Admittance", Q_NULLPTR));
         btnSuperimpose->setText(QApplication::translate("MainWindow", "Superimpose", Q_NULLPTR));

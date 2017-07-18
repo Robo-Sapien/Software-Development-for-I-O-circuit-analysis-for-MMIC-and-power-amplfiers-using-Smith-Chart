@@ -401,22 +401,39 @@ if(flag[13]) {
 
 
 
-        if(flag[18])
-            painter.setPen(QPen(Qt::green, 8));
-        else
-            painter.setPen(QPen(Qt::red, 8));
+        if(flag[18]){
+            S1.setX(S1Mag*cos(S1angle));
+            S1.setY(S1Mag*sin(S1angle));
+            S2.setX(S2Mag*cos(S2angle));
+            S2.setY(S2Mag*sin(S2angle));
+            S3.setX(S3Mag*cos(S3angle));
+            S3.setY(S3Mag*sin(S3angle));
+            painter.setPen(QPen(Qt::magenta, 12));
+            painter.drawPoint(S1.x()*scale+center.x(),-S1.y()*scale+center.y());
+            painter.setPen(QPen(Qt::red, 12));
+            painter.drawPoint(S2.x()*scale+center.x(),-S2.y()*scale+center.y());
+            painter.setPen(QPen(Qt::green, 12));
+            painter.drawPoint(S3.x()*scale+center.x(),-S3.y()*scale+center.y());
+        }
+
+
+        else{
         S1.setX(S1Mag*cos(S1angle));
         S1.setY(S1Mag*sin(S1angle));
         S2.setX(S2Mag*cos(S2angle));
         S2.setY(S2Mag*sin(S2angle));
         S3.setX(S3Mag*cos(S3angle));
         S3.setY(S3Mag*sin(S3angle));
+        painter.setPen(QPen(Qt::magenta, 8));
         painter.drawPoint(S1.x()*scale+center.x(),-S1.y()*scale+center.y());
+        painter.setPen(QPen(Qt::red, 8));
         painter.drawPoint(S2.x()*scale+center.x(),-S2.y()*scale+center.y());
+        painter.setPen(QPen(Qt::green, 8));
         painter.drawPoint(S3.x()*scale+center.x(),-S3.y()*scale+center.y());
+        }
+
+
         painter.setPen(QPen(Qt::red, 2));
-
-
 
         double initial_y;
         double initial_x;
@@ -543,7 +560,7 @@ if(flag[13]) {
         {
             double delta = 0;
 
-            for(; delta<=  50/(wMin*step_array[i].Val); delta +=  50/(wMin*step_array[i].Val)/100000)
+            for(; delta<=  1/(50*wMin*step_array[i].Val); delta +=  1/(50*wMin*step_array[i].Val)/100000)
             {
 
                 initial_pointMin.setY( initial_yMin - (delta));
@@ -554,7 +571,7 @@ if(flag[13]) {
             }
             delta = 0;
 
-            for(; delta<=  50/(w*step_array[i].Val); delta +=  50/(w*step_array[i].Val)/100000)
+            for(; delta<=  1/(50*w*step_array[i].Val); delta +=  1/(50*w*step_array[i].Val)/100000)
             {
 
                 //if(C == 0)
@@ -584,7 +601,7 @@ if(flag[13]) {
 
 
                 delta = 0;
-                for(; delta<=  50/(wMax*step_array[i].Val); delta +=  50/(wMax*step_array[i].Val)/100000)
+                for(; delta<=  1/(50*wMax*step_array[i].Val); delta +=  1/(50*wMax*step_array[i].Val)/100000)
                 {
 
                     initial_pointMax.setY( initial_yMax - delta);
@@ -677,20 +694,40 @@ if(flag[13]) {
 
     if(flag[19]) {
 
-        if(flag[18])
-            painter.setPen(QPen(Qt::green, 8));
-        else
-            painter.setPen(QPen(Qt::red, 8));
+        if(flag[18]){
+            S1.setX(S1Mag*cos(S1angle));
+            S1.setY(S1Mag*sin(S1angle));
+            S2.setX(S2Mag*cos(S2angle));
+            S2.setY(S2Mag*sin(S2angle));
+            S3.setX(S3Mag*cos(S3angle));
+            S3.setY(S3Mag*sin(S3angle));
+            painter.setPen(QPen(Qt::magenta, 12));
+            painter.drawPoint(S1.x()*scale+center.x(),-S1.y()*scale+center.y());
+            painter.setPen(QPen(Qt::red, 12));
+            painter.drawPoint(S2.x()*scale+center.x(),-S2.y()*scale+center.y());
+            painter.setPen(QPen(Qt::green, 12));
+            painter.drawPoint(S3.x()*scale+center.x(),-S3.y()*scale+center.y());
+        }
+
+
+        else{
         S1.setX(S1Mag*cos(S1angle));
         S1.setY(S1Mag*sin(S1angle));
         S2.setX(S2Mag*cos(S2angle));
         S2.setY(S2Mag*sin(S2angle));
         S3.setX(S3Mag*cos(S3angle));
         S3.setY(S3Mag*sin(S3angle));
+        painter.setPen(QPen(Qt::magenta, 8));
         painter.drawPoint(S1.x()*scale+center.x(),-S1.y()*scale+center.y());
+        painter.setPen(QPen(Qt::red, 8));
         painter.drawPoint(S2.x()*scale+center.x(),-S2.y()*scale+center.y());
+        painter.setPen(QPen(Qt::green, 8));
         painter.drawPoint(S3.x()*scale+center.x(),-S3.y()*scale+center.y());
+        }
+
+
         painter.setPen(QPen(Qt::red, 2));
+
 
            double initial_y;
            double initial_x;
@@ -820,7 +857,7 @@ if(flag[13]) {
                double delta=0;
 
 
-               for(; delta<=  50/(w*step_array[i].Val); delta +=  50/(w*step_array[i].Val)/100000 )
+               for(; delta<=  1/(50*w*step_array[i].Val); delta +=  1/(50*w*step_array[i].Val)/100000 )
                {
 
                    //if(C == 0)
@@ -843,7 +880,7 @@ if(flag[13]) {
                delta=0;
 
 
-               for(; delta<=  50/(wMin*step_array[i].Val); delta +=  50/(wMin*step_array[i].Val)/100000 )
+               for(; delta<=  1/(50*wMin*step_array[i].Val); delta +=  1/(50*wMin*step_array[i].Val)/100000 )
                {
 
                    initial_pointMin.setY( initial_yMin - delta);
@@ -856,7 +893,7 @@ if(flag[13]) {
                delta=0;
 
 
-               for(; delta<=  50/(wMax*step_array[i].Val); delta +=  50/(wMax*step_array[i].Val)/100000 )
+               for(; delta<=  1/(50*wMax*step_array[i].Val); delta +=  1/(50*wMax*step_array[i].Val)/100000 )
                {
 
                    initial_pointMax.setY( initial_yMax - delta);
@@ -941,6 +978,9 @@ if(flag[13]) {
 
 
            }
+           flag[18]=false;
+
+
 
        }
 

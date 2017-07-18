@@ -3,17 +3,19 @@
 #include <QMessageBox>
 #include "global.h"
 #include "dialogmat.h"
-#include <QFile>
 #include <QTextStream>
 #include <QTableWidget>
 #include <QString>
 #include <QTableWidgetItem>
-#include <iostream>
+#include <fstream>
+#include <QFileDialog>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->ui->statusBar->showMessage(" Developed by students of BITS Pilani for DRDO-SSPL");
 }
 
 MainWindow::~MainWindow()
@@ -254,12 +256,14 @@ void MainWindow::on_pathButton_clicked()
 
 
     this->ui->renderArea->flag[13] = true;
+    if(this->ui->renderArea->step_count==0)
+        this->ui->tableWidget->clearContents();
     this->ui->renderArea->Val=this->ui->LCvalue->value();
     if(this->ui->s22->isChecked()){
         this->ui->renderArea->flag[18]=true;
     }
 
-    if(!this->ui->editRadioButton->isChecked()){
+    if((!this->ui->editRadioButton->isChecked())&&(this->ui->MaxF->value()!=0 && this->ui->MinF->value()!=0 && this->ui->frequencyLC->value()!=0)){
         this->ui->renderArea->step_count+=1;
         this->ui->renderArea->step_array[(this->ui->renderArea->step_count)-1].Val = this->ui->LCvalue->value();
         QTableWidgetItem *val= new QTableWidgetItem(QString::number(this->ui->LCvalue->value()));
@@ -273,6 +277,14 @@ void MainWindow::on_pathButton_clicked()
     this->ui->MaxF->setStyleSheet("QDoubleSpinBox {background-color: magenta; }");
     this->ui->frequencyLC->setStyleSheet("QDoubleSpinBox {background-color: red; }");
 
+    this->ui->S1Mag->setStyleSheet("QDoubleSpinBox {background-color: green; }");
+    this->ui->S2Mag->setStyleSheet("QDoubleSpinBox {background-color: magenta; }");
+    this->ui->S3Mag->setStyleSheet("QDoubleSpinBox {background-color: red; }");
+
+    this->ui->S1angle->setStyleSheet("QDoubleSpinBox {background-color: green; }");
+    this->ui->S2angle->setStyleSheet("QDoubleSpinBox {background-color: magenta; }");
+    this->ui->S3angle->setStyleSheet("QDoubleSpinBox {background-color: red; }");
+
     //temp. for testing purpose only
     //QString test="";
     //for(int i=0;i<this->ui->renderArea->step_count;i++)
@@ -282,45 +294,65 @@ void MainWindow::on_pathButton_clicked()
     this->ui->renderArea->w=2*M_PI*(this->ui->frequencyLC->value());
     this->ui->renderArea->wMax=2*M_PI*(this->ui->MaxF->value());
     this->ui->renderArea->wMin=2*M_PI*(this->ui->MinF->value());
-     this->ui->renderArea->S1Mag=(this->ui->S1Mag->value());
-    this->ui->renderArea->S2Mag=(this->ui->S2Mag->value());
-    this->ui->renderArea->S3Mag=(this->ui->S3Mag->value());
-    this->ui->renderArea->S1angle=2*M_PI*(this->ui->S1angle->value())/360.0;
-    this->ui->renderArea->S2angle=2*M_PI*(this->ui->S2angle->value())/360.0;
-    this->ui->renderArea->S3angle=2*M_PI*(this->ui->S3angle->value())/360.0;
+     this->ui->renderArea->S1Mag=(this->ui->S2Mag->value());
+    this->ui->renderArea->S2Mag=(this->ui->S3Mag->value());
+    this->ui->renderArea->S3Mag=(this->ui->S1Mag->value());
+    this->ui->renderArea->S1angle=2*M_PI*(this->ui->S2angle->value())/360.0;
+    this->ui->renderArea->S2angle=2*M_PI*(this->ui->S3angle->value())/360.0;
+    this->ui->renderArea->S3angle=2*M_PI*(this->ui->S1angle->value())/360.0;
 
 
 
     if(this->ui->cSeriesRadioButton->isChecked()){
-        this->ui->renderArea->setTopology(this->ui->renderArea->Series_Capacitance);
-        this->ui->renderArea->step_array[(this->ui->renderArea->step_count)-1].topology = this->ui->renderArea->getTopology();
+        if(this->ui->MaxF->value()==0 && this->ui->MinF->value()==0 && this->ui->frequencyLC->value()==0)
+            QMessageBox::information(0,"Error","Select Frequency");
+        else{
+            this->ui->renderArea->setTopology(this->ui->renderArea->Series_Capacitance);
+            this->ui->renderArea->step_array[(this->ui->renderArea->step_count)-1].topology = this->ui->renderArea->getTopology();
+
+
+            QTableWidgetItem *cseries=new QTableWidgetItem("C-Series");
+            this->ui->tableWidget->setItem(this->ui->renderArea->step_count-1,0,cseries);
+        }
         this->ui->renderArea->repaint();
-        QTableWidgetItem *cseries=new QTableWidgetItem("C-Series");
-        this->ui->tableWidget->setItem(this->ui->renderArea->step_count-1,0,cseries);
 
     }
     else if(this->ui->cShuntRadioButton->isChecked()){
-       this->ui->renderArea->setTopology(this->ui->renderArea->Shunt_Capacitance);
+        if(this->ui->MaxF->value()==0 && this->ui->MinF->value()==0 && this->ui->frequencyLC->value()==0)
+            QMessageBox::information(0,"Error","Select Frequency");
+       else{
+            this->ui->renderArea->setTopology(this->ui->renderArea->Shunt_Capacitance);
         this->ui->renderArea->step_array[(this->ui->renderArea->step_count)-1].topology = this->ui->renderArea->getTopology();
-         this->ui->renderArea->repaint();
+
         QTableWidgetItem *cshunt=new QTableWidgetItem("C-Shunt");
         this->ui->tableWidget->setItem(this->ui->renderArea->step_count-1,0,cshunt);
-
+        }
+        this->ui->renderArea->repaint();
     }
     else if(this->ui->lSeriesRadioButton->isChecked()){
-       this->ui->renderArea->setTopology(this->ui->renderArea->Series_Inductance);
+        if(this->ui->MaxF->value()==0 && this->ui->MinF->value()==0 && this->ui->frequencyLC->value()==0)
+            QMessageBox::information(0,"Error","Select Frequency");
+        else{
+            this->ui->renderArea->setTopology(this->ui->renderArea->Series_Inductance);
         this->ui->renderArea->step_array[(this->ui->renderArea->step_count)-1].topology = this->ui->renderArea->getTopology();
-         this->ui->renderArea->repaint();
+
         QTableWidgetItem *lseries=new QTableWidgetItem("L-Series");
         this->ui->tableWidget->setItem(this->ui->renderArea->step_count-1,0,lseries);
+        }
+        this->ui->renderArea->repaint();
     }
     else if(this->ui->lShuntRadioButton->isChecked()){
+        if(this->ui->MaxF->value()==0 && this->ui->MinF->value()==0 && this->ui->frequencyLC->value()==0)
+            QMessageBox::information(0,"Error","Select Frequency");
+
+        else{
         this->ui->renderArea->setTopology(this->ui->renderArea->Shunt_Inductance);
         this->ui->renderArea->step_array[(this->ui->renderArea->step_count)-1].topology = this->ui->renderArea->getTopology();
-         this->ui->renderArea->repaint();
-
         QTableWidgetItem *lshunt=new QTableWidgetItem("L-Shunt");
         this->ui->tableWidget->setItem(this->ui->renderArea->step_count-1,0,lshunt);
+        }
+        this->ui->renderArea->repaint();
+
 
     }
     else if(this->ui->editRadioButton->isChecked()){
@@ -342,9 +374,50 @@ void MainWindow::on_pathButton_clicked()
 
 void MainWindow::on_pathStopButton_clicked()
 {
+    ofstream savefile;
+
+        QString s1 = QFileDialog::getSaveFileName(this, "Save", "data",
+                "Text files (*.txt)");
+        std::string filename = s1.toLocal8Bit().constData();
+        savefile.open(filename);
+
+        savefile<<"Max-Freq"<<'\t'<<this->ui->MaxF->value()<<endl;
+        savefile<<"Mid-Freq"<<'\t'<<this->ui->frequencyLC->value()<<endl;
+        savefile<<"Min-Freq"<<'\t'<<this->ui->MinF->value()<<endl;
+        if(this->ui->s11->isChecked()){
+            savefile<<"S11-Max"<<'\t'<<"MAG:"<<'\t'<<this->ui->S2Mag->value()<<'\t'<<"ANG:"<<'\t'<<this->ui->S2angle->value()<<endl;
+            savefile<<"S11-Mid"<<'\t'<<"MAG:"<<'\t'<<this->ui->S3Mag->value()<<'\t'<<"ANG:"<<'\t'<<this->ui->S3angle->value()<<endl;
+            savefile<<"S11-Min"<<'\t'<<"MAG:"<<'\t'<<this->ui->S1Mag->value()<<'\t'<<"ANG:"<<'\t'<<this->ui->S1angle->value()<<endl;
+        }
+        else if(this->ui->s22->isChecked()){
+            savefile<<"22-Max"<<'\t'<<"MAG:"<<'\t'<<this->ui->S2Mag->value()<<'\t'<<"ANG:"<<'\t'<<this->ui->S2angle->value()<<endl;
+            savefile<<"S22-Mid"<<'\t'<<"MAG:"<<'\t'<<this->ui->S3Mag->value()<<'\t'<<"ANG:"<<'\t'<<this->ui->S3angle->value()<<endl;
+            savefile<<"S22-Min"<<'\t'<<"MAG:"<<'\t'<<this->ui->S1Mag->value()<<'\t'<<"ANG:"<<'\t'<<this->ui->S1angle->value()<<endl;
+
+        }
+        savefile<<"L/C type"<<'\t'<<"Value(nH/nF)"<<endl;
+
+        for(int i=0;i<this->ui->renderArea->step_count;i++){
+            if(this->ui->renderArea->step_array[i].topology==this->ui->renderArea->Series_Capacitance)
+                savefile<<"C-series"<<'\t'<<this->ui->renderArea->step_array[i].Val<<endl;
+            else if(this->ui->renderArea->step_array[i].topology==this->ui->renderArea->Series_Inductance)
+                savefile<<"L-series"<<'\t'<<this->ui->renderArea->step_array[i].Val<<endl;
+            else if(this->ui->renderArea->step_array[i].topology==this->ui->renderArea->Shunt_Inductance)
+                savefile<<"L-shunt"<<'\t'<<this->ui->renderArea->step_array[i].Val<<endl;
+            else if(this->ui->renderArea->step_array[i].topology==this->ui->renderArea->Shunt_Capacitance)
+                savefile<<"C-shunt"<<'\t'<<this->ui->renderArea->step_array[i].Val<<endl;
+        }
+
+
+
+    this->ui->renderArea->rs.setValue(this->ui->rsreal->value(),this->ui->rsimg->value());
+    this->ui->renderArea->rl.setValue(this->ui->rlreal->value(),this->ui->rlimg->value());
+    this->ui->renderArea->zin=((this->ui->renderArea->ABCD.val[1][1]*this->ui->renderArea->rs)+this->ui->renderArea->ABCD.val[0][1])*(((this->ui->renderArea->ABCD.val[1][0]*this->ui->renderArea->rs)+this->ui->renderArea->ABCD.val[0][0]).inverse());
+    this->ui->renderArea->zout=((this->ui->renderArea->ABCD.val[1][1]*this->ui->renderArea->rs)+this->ui->renderArea->ABCD.val[0][1])*(((this->ui->renderArea->ABCD.val[1][0]*this->ui->renderArea->rs)+this->ui->renderArea->ABCD.val[0][0]).inverse());
     this->ui->renderArea->flag[13] = false;
     this->ui->renderArea->flag[19] = true;
-    this->ui->tableWidget->clearContents();
+    this->ui->zinlabel->setText(this->ui->renderArea->zin.display());
+    this->ui->zoutlabel->setText(this->ui->renderArea->zout.display());
     this->ui->label_10->setText(QString::number(this->ui->renderArea->step_array[0].Val));
     this->ui->renderArea->repaint();
     this->ui->A->setText(this->ui->renderArea->ABCD.val[0][0].display());

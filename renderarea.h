@@ -4,8 +4,6 @@
 #include <QColor>
 #include <QVector>
 #include <QMessageBox>
-#include <fstream>
-#include <iostream>
 using namespace std;
 class RenderArea : public QWidget
 {
@@ -28,6 +26,13 @@ public:
             b.imag=imag+a.imag;
             return b;
         }
+        complex operator - (complex a){
+            complex b;
+            b.real=real-a.real;
+            b.imag=imag-a.imag;
+            return b;
+        }
+
         complex operator * (complex a){
             complex b;
             b.real=real*a.real-imag*a.imag;
@@ -38,6 +43,12 @@ public:
             complex b;
             b.real=(real*a.real+imag*a.imag)/(pow(a.real,2)+pow(a.imag,2));
             b.imag=(imag*a.real-real*a.imag)/(pow(a.real,2)+pow(a.imag,2));
+            return b;
+        }
+        complex inverse(){
+            complex b;
+            b.real=(real)/(pow(real,2)+pow(imag,2));
+            b.imag=(-imag)/(pow(real,2)+pow(imag,2));
             return b;
         }
         void operator =(int a){
@@ -82,8 +93,8 @@ public:
             QString r=QString::number(real);
             QString x=QString::number(abs(imag));
             QString num;
-            r= r.left(5);
-            x=x.left(5);
+            //r= r.left(5);
+            //x=x.left(5)
 
             if(imag>=0)
                 num=r+" + j"+x;
@@ -161,12 +172,12 @@ public:
     QPointF S1,S2,S3;
     double Cin, Lin,L, C;
     double Val;
+    matrix ABCD;
+    complex zin,zout,rl,rs;
     QPointF initial_point;
     QPointF initial_pointMax;
     QPointF initial_pointMin;
     enum Topology { Shunt_Capacitance, Shunt_Inductance, Series_Capacitance, Series_Inductance };
-    matrix ABCD;
-    complex one;
 
     matrix setSeries(complex z){
         matrix m;
@@ -178,24 +189,24 @@ public:
         if(z==0){
             QMessageBox::information(0,"Error!","Shunt Impedance cannot be ZERO!");
         }
-        one=1;
-        m.val[0][0]=1;m.val[0][1]=0;m.val[1][0]=one/z;m.val[1][1]=1;
+        m.val[0][0]=1;m.val[0][1]=0;m.val[1][0]=z.inverse();m.val[1][1]=1;
         return m;
     }
 
     updateABCD(){
-        ABCD.val[0][0]=1;ABCD.val[0][1]=0;ABCD.val[1][0]=0;ABCD.val[1][1]=1;
+        ABCD.val[0][0]=1;ABCD.val[1][0]=0;ABCD.val[0][1]=0;ABCD.val[1][1]=1;
         matrix abcd;
         for(int i=0;i<step_count;i++){
             complex z;
             if(step_array[i].topology==Shunt_Capacitance||step_array[i].topology==Series_Capacitance)
-                z.setValue(0,-1/(2*w*M_PI*step_array[i].Val));
+                z.setValue(0,-1/(w*step_array[i].Val));
             else
-                z.setValue(0,2*w*M_PI*step_array[i].Val);
+                z.setValue(0,w*step_array[i].Val);
             if(step_array[i].topology==Shunt_Capacitance||step_array[i].topology==Shunt_Inductance)
                 abcd=setShunt(z);
             else
                 abcd=setSeries(z);
+
             ABCD=ABCD*abcd;
         }
     }
@@ -258,6 +269,7 @@ private:
     QPointF compute_imaginary(float r);
     QPointF compute(float t);
     Topology mTopology;
+
 
 
 
